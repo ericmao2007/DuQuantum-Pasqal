@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'challenge' / 'results'
 
 
-def evaluate(instance, reference, route_costs, route_orders, method, seed, attempts):
+def evaluate(instance, reference, route_costs, route_orders, method, seed, attempts, record_trace=False):
     rng = np.random.default_rng(seed)
     pair = pair_costs(instance)
     sampler = Sampler(instance, pair, method, seed)
@@ -27,20 +27,32 @@ def evaluate(instance, reference, route_costs, route_orders, method, seed, attem
     for attempt in range(attempts):
         remaining, groups = set(range(n)), []
         failed = False
+        stages = []
         for left in range(k, 1, -1):
             if not remaining:
                 break
             selected = sampler.draw(remaining, left, rng)
             stage_total += 1
+            if record_trace:
+                stages.append(dict(vehicle=k-left,remaining=sorted(remaining),pool=list(map(int,sampler.pool(remaining))),selected=selected,selected_load=sum(demands[i] for i in selected),remaining_load=sum(demands[i] for i in remaining.difference(selected)),vehicles_left=left))
             # Empty vehicles are valid. Reject, rather than repair, bad shots.
             if sum(demands[i] for i in selected) > capacity or sum(demands[i] for i in remaining.difference(selected)) > (left-1)*capacity:
+                if record_trace:
+                    stages[-1]['accepted']=False
+                    stages[-1]['reason']='capacity exceeded' if stages[-1]['selected_load']>capacity else 'remaining fleet capacity insufficient'
                 failed = True
                 break
+            if record_trace:
+                stages[-1]['accepted']=True
+                stages[-1]['reason']='capacity checks passed'
             stage_valid += 1
             groups.append(selected)
             remaining.difference_update(selected)
         if failed or sum(demands[i] for i in remaining) > capacity:
-            plans.append({'attempt': attempt, 'feasible': False})
+            failure={'attempt': attempt, 'feasible': False}
+            if record_trace:
+                failure['stages']=stages
+            plans.append(failure)
             continue
         groups.append(sorted(remaining))
         assignment = groups_to_assignment(n, groups)
@@ -52,6 +64,8 @@ def evaluate(instance, reference, route_costs, route_orders, method, seed, attem
         plan = dict(attempt=attempt, feasible=True, groups=groups, loads=loads,
                     model_cost=model, routed_cost=route,
                     routes=[list(route_orders[m]) for m in masks])
+        if record_trace:
+            plan['stages']=stages
         plans.append(plan)
         feasible.append(plan)
     best = min(feasible, key=lambda p: (p['model_cost'], p['routed_cost'])) if feasible else None

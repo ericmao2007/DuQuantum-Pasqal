@@ -66,3 +66,15 @@ The original Track A benchmark remains reproducible with `python -m challenge.ru
 - DMM routing is emulator-only and reported separately from global-only control. Coupling and linear errors are saved; all physical long-range interactions remain.
 - Finite conditional banks and best-of-shot selection are hybrid costs. Raw conditional hit rates are not unconditional CVRP success probabilities. Random valid-route sampling is a strong baseline on these small clusters.
 - The report records failed embeddings/encodings, missing feasible trajectories, classical contributions, and AI use. A model-selected clustering can have a worse CVRP route than another clustering.
+
+
+## United States map replay
+
+`sites/atlas-route-lab/` contains the interactive Atlas Route Lab page. To generate a fresh measured run on fifteen illustrative US city centers:
+
+```bash
+.venv/bin/python -m challenge.us_demo
+python3 -m http.server 8765 --directory sites/atlas-route-lab/dist
+```
+
+The page at http://localhost:8765/ replays all 64 measured clustering trajectories, their capacity checks, best-so-far objectives against random sampling, the actual intermediate excitation probabilities for quantum routing, and the final hybrid vehicle routes. Full evidence is in `challenge/us_demo_results/`. Geographic coordinates are projected straight-line distances, not road distances; quantum and classical routing contributions are labeled. Browser controls replay saved data and do not execute Python or submit new jobs.

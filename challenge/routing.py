@@ -6,7 +6,7 @@ import numpy as np
 from scipy.spatial.distance import pdist
 import pulser
 from pulser.channels import DMM
-from pulser.backend import BitStrings
+from pulser.backend import BitStrings, Occupation
 from pulser.backends import QutipBackendV2
 from pulser_simulation import QutipConfig
 from .quantum import embed
@@ -107,7 +107,7 @@ def energy(bits,spec):
     return float(spec['constant']+spec['h']@x+np.sum(np.triu(spec['J'],1)*np.outer(x,x)))
 
 
-def simulate(instance, group, kind, mode, seed, shots=ROUTING_SHOTS):
+def simulate(instance, group, kind, mode, seed, shots=ROUTING_SHOTS, record_occupations=False):
     start=time.perf_counter()
     spec=encoding(instance,group,kind)
     h,j=SCALE*spec['h'],SCALE*spec['J']
@@ -133,8 +133,17 @@ def simulate(instance, group, kind, mode, seed, shots=ROUTING_SHOTS):
     seq.add(pulser.Pulse.ConstantDetuning(pulser.RampWaveform(800,6,0),delta,0),'drive',protocol='no-delay')
     assert seq.get_duration()==duration
     np.random.seed(seed)
-    cfg=QutipConfig(observables=[BitStrings(num_shots=shots,evaluation_times=[1.])])
-    counts=dict(QutipBackendV2(seq,config=cfg).run().final_bitstrings)
+    observables=[BitStrings(num_shots=shots,evaluation_times=[1.])]
+    observation_times=np.linspace(0,1,41)
+    if record_occupations:
+        observables.append(Occupation(evaluation_times=observation_times))
+    cfg=QutipConfig(observables=observables)
+    result=QutipBackendV2(seq,config=cfg).run()
+    counts=dict(result.final_bitstrings)
+    occupation_trace=[]
+    if record_occupations:
+        for t in result.get_result_times('occupation'):
+            occupation_trace.append(dict(time_ns=round(float(t)*duration),occupations=np.asarray(result.get_result('occupation',float(t)),dtype=float).tolist()))
     valid=[]
     for bits,count in counts.items():
         route=decode(bits,spec)
@@ -142,7 +151,7 @@ def simulate(instance, group, kind, mode, seed, shots=ROUTING_SHOTS):
             valid.append(dict(bits=bits,count=count,route=route,length=route_length(instance,route)))
     best=min(valid,key=lambda p:p['length']) if valid else None
     physical_h=h if dmm else np.full(len(h),baseline)
-    return dict(kind=kind,mode=mode,dmm=dmm,group=list(group),variables=spec['variables'],atoms=len(h),shots=shots,seed=seed,
+    return dict(occupation_trace=occupation_trace,kind=kind,mode=mode,dmm=dmm,group=list(group),variables=spec['variables'],atoms=len(h),shots=shots,seed=seed,
                 duration_ns=duration,coordinates_um=xy.tolist(),target_h=h.tolist(),target_J=j.tolist(),
                 constant=SCALE*spec['constant'],linear_error=float(np.linalg.norm(physical_h-h)/np.linalg.norm(h)),
                 embedding_error=error,embedding_iterations=iterations,counts=counts,
