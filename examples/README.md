@@ -1,46 +1,46 @@
-# Pulser 教程实跑
+# Running the Pulser Tutorial
 
-在项目根目录运行：
+Run from the project root:
 
 ```bash
 .venv/bin/python examples/pulser_tutorial.py
 ```
 
-图片和完整测量计数保存在 `output/pulser_tutorial/`。
-这是本地、无噪声、不含硬件调制响应的量子态模拟；没有向云端或真实 QPU 提交任务。
+Plots and complete measurement counts are saved in `output/pulser_tutorial/`.
+This is a local, noiseless quantum-state simulation without hardware modulation response. No jobs are submitted to the cloud or a real QPU.
 
-## 程序里的四个对象
+## Four Core Objects
 
-- Device：设备允许的原子间距、激光强度、通道等约束。
-- Register：原子的位置；位置决定原子之间的相互作用。
-- Pulse：激光强度 Ω、失谐 δ、相位及持续时间。
-- Sequence：把脉冲按顺序放到通道上，描述系统如何随时间演化。
+- Device: defines constraints such as atom spacing, laser amplitude, and available channels.
+- Register: specifies atom positions, which determine the interactions between atoms.
+- Pulse: specifies laser amplitude Ω, detuning δ, phase, and duration.
+- Sequence: schedules pulses on channels to describe how the system evolves over time.
 
-QutipBackendV2 在本机求解演化，再从最终量子态抽样 1000 次。测量时 0 表示基态 g，1 表示 Rydberg 激发态 r。抽样结果可能随运行变化。
+QutipBackendV2 computes the evolution locally and samples the final quantum state 1000 times. In each measurement, 0 represents the ground state g and 1 represents the Rydberg excited state r. Sample counts may vary between runs.
 
-## 例一：一个原子的 π 脉冲
+## Example 1: A Single-Atom π Pulse
 
-初态为 |g⟩，没有原子间相互作用。共振且相位为零时，H/ℏ = Ωσx/2。
-激发概率 P(r) = sin²(Ωt/2)。脉冲长 1000 ns = 1 μs，Ω = π rad/μs，故 Ωt = π，理论上 P(r) = 1。
+The initial state is |g⟩, and there are no interactions between atoms. On resonance and with zero phase, H/ℏ = Ωσx/2.
+The excitation probability is P(r) = sin²(Ωt/2). The pulse lasts 1000 ns = 1 μs with Ω = π rad/μs, so Ωt = π and the theoretical probability is P(r) = 1.
 
-对应代码是 `Pulse.ConstantPulse(1000, np.pi, 0, 0)`：四个参数依次为持续时间（ns）、强度（rad/μs）、失谐（rad/μs）、相位（rad）。
-实跑得到 `{'1': 1000}`。
+The corresponding code is `Pulse.ConstantPulse(1000, np.pi, 0, 0)`. Its four arguments are duration (ns), amplitude (rad/μs), detuning (rad/μs), and phase (rad).
+The example run produced `{'1': 1000}`.
 
-## 例二：九个原子的棋盘格
+## Example 2: A Nine-Atom Checkerboard
 
-九个原子排列成 3×3 方格，相邻距离约 7.186761 μm。
-哈密顿量为 H/ℏ = Σᵢ[Ω(t)σxᵢ/2 − δ(t)nᵢ] + Σᵢ<ⱼ Uᵢⱼnᵢnⱼ。
-nᵢ 为激发态占据数；Uᵢⱼ 随距离的六次方反比衰减，模拟包含所有原子对的相互作用。
+Nine atoms form a 3×3 square grid with a nearest-neighbor spacing of approximately 7.186761 μm.
+The Hamiltonian is H/ℏ = Σᵢ[Ω(t)σxᵢ/2 − δ(t)nᵢ] + Σᵢ<ⱼ Uᵢⱼnᵢnⱼ.
+Here, nᵢ is the excited-state occupation operator. Uᵢⱼ decreases with the inverse sixth power of distance, and the simulation includes interactions between all atom pairs.
 
-正失谐使激发降低能量，原子间排斥又让相邻两个激发付出能量代价，两者竞争使棋盘格排列受到偏好。
+Positive detuning lowers the energy of an excitation, while repulsive interactions impose an energy cost when neighboring atoms are both excited. These competing contributions favor a checkerboard arrangement.
 
-脉冲分为三个阶段：
+The pulse sequence has three stages:
 
-1. 252 ns：把 Ω 从 0 提高到 4π，失谐保持 −12π，初始基态受到偏好。
-2. 800 ns：Ω 保持 4π，失谐从 −12π 扫到 4π，逐渐鼓励激发。
-3. 500 ns：保持正失谐，把 Ω 降到 0，结束驱动。
+1. 252 ns: increase Ω from 0 to 4π while holding detuning at −12π, which favors the initial ground-state configuration.
+2. 800 ns: hold Ω at 4π and sweep detuning from −12π to 4π, gradually favoring excitations.
+3. 500 ns: hold positive detuning and reduce Ω to 0 to end the drive.
 
-总时长 1552 ns。目标 `101010101` 按寄存器顺序对应：
+The total duration is 1552 ns. In register order, the target bitstring `101010101` corresponds to:
 
 ```text
 1 0 1
@@ -48,6 +48,6 @@ nᵢ 为激发态占据数；Uᵢⱼ 随距离的六次方反比衰减，模拟�
 1 0 1
 ```
 
-教程使用有限时长的绝热制备思路，不能由“绝热定理”直接推断实际这段脉冲必然成功。第一次实跑目标态出现 129/1000 次（12.9%），是最常见的单个结果；其余计数分散在许多其他状态。无噪声也不意味着制备一定成功。
+The tutorial uses a finite-duration protocol inspired by adiabatic state preparation. The adiabatic theorem alone does not guarantee that this particular pulse sequence succeeds. In the first run, the target appeared in 129 of 1000 shots (12.9%), making it the most frequent individual outcome. The remaining counts were distributed across many other states. A noiseless simulation does not guarantee successful state preparation.
 
-这与优化的联系是：把希望得到的解设计成低能态，用演化提高测到这些解的机会，再对采样得到的比特串进行经典检查。这个例子只演示固定原子阵列的状态制备，还没有编码任意优化问题。
+The connection to optimization is to encode desired solutions as low-energy states, use quantum evolution to increase the chance of measuring those solutions, and then check the sampled bitstrings classically. This example demonstrates state preparation on a fixed atom array; it does not yet encode an arbitrary optimization problem.
