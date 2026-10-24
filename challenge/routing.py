@@ -30,7 +30,7 @@ def route_length(instance, route):
 def encoding(instance, group, kind):
     """Return canonical h,J,constant; energy equals normalized length + penalties."""
     n = len(group)
-    cost = distances(instance, group) / np.sqrt(20000)
+    cost = distances(instance, group) / instance.get('distance_normalizer',100*np.sqrt(instance.get('spatial_dimension',2)))
     if kind == 'position':
         variables = [(i, t) for i in range(n) for t in range(n)]
         h, j, constant = np.zeros(n*n), np.zeros((n*n,n*n)), 2*n*PENALTY

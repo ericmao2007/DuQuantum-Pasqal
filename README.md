@@ -77,7 +77,7 @@ The original Track A benchmark remains reproducible with `python -m challenge.ru
 python3 -m http.server 8765 --directory sites/atlas-route-lab/dist
 ```
 
-The page at http://localhost:8765/ replays all 64 measured clustering trajectories, their capacity checks, best-so-far objectives against random sampling, the actual intermediate excitation probabilities for quantum routing, and the final hybrid vehicle routes. Full evidence is in `challenge/us_demo_results/`. Geographic coordinates are projected straight-line distances, not road distances; quantum and classical routing contributions are labeled. Browser controls replay saved data and do not execute Python or submit new jobs.
+The retained US page at http://localhost:8765/earth.html replays all 64 measured clustering trajectories, their capacity checks, best-so-far objectives against random sampling, the actual intermediate excitation probabilities for quantum routing, and the final hybrid vehicle routes. Full evidence is in `challenge/us_demo_results/`. Geographic coordinates are projected straight-line distances, not road distances; quantum and classical routing contributions are labeled. Browser controls replay saved data and do not execute Python or submit new jobs.
 
 The minimal timing comparison is `sites/atlas-route-lab/dist/compare.html`. Reproduce its actual three-run measurements with:
 
@@ -86,3 +86,15 @@ The minimal timing comparison is `sites/atlas-route-lab/dist/compare.html`. Repr
 ```
 
 It compares exact classical CVRP with the quantum-assisted **CPU simulator**, displaying both runtime and solution quality. Raw stage timings and all repeats are saved in `challenge/us_demo_results/timing.json`; no real-QPU speedup is inferred.
+
+## 3D planetary walkthrough
+
+The Site homepage now presents `Atlas Orbit`, a simpler four-stage walkthrough on ten fictional planets. The original US map replay remains at `earth.html`; the US timing comparison remains at `compare.html`.
+
+```bash
+.venv/bin/python -m challenge.space_demo
+python3 -m http.server 8765 --directory sites/atlas-route-lab/dist
+.venv/bin/python -m unittest challenge.test_space -v
+```
+
+The planetary example uses real XYZ Euclidean distances, fixed fictional coordinates, three ships, and measured quantum clustering/routing evidence. It is a separate 3D demonstration, not a replacement for the official two-dimensional challenge benchmark. The physical atom registers stay 2D. `su` is a fictional distance unit; no solar-system ephemeris or orbital transfer is assumed. Full results are in `challenge/space_demo_results/`.

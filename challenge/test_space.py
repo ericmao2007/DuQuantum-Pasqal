@@ -1,0 +1,52 @@
+"""Check that the planetary example solves the real XYZ problem it displays."""
+import json
+from itertools import permutations
+from pathlib import Path
+import unittest
+import numpy as np
+from .core import generate, validate, pair_costs, references, groups_to_assignment
+from .routing import encoding, energy, route_length
+
+ROOT=Path(__file__).resolve().parent
+
+
+class SpaceChecks(unittest.TestCase):
+    def test_depth_changes_distance_and_target_energy(self):
+        instance=generate('S',11)
+        instance.update(spatial_dimension=3,distance_normalizer=float(100*np.sqrt(3)),
+                        customers=[[10,10,10],[10,10,20],[20,10,10],[20,20,20]],depot=[50,50,50],demands=[1]*4)
+        validate(instance,[0,0,1,1])
+        self.assertAlmostEqual(pair_costs(instance)[0,1],10/(100*np.sqrt(3)))
+        reference,costs,orders=references(instance)
+        for mask,cost in costs.items():
+            group=[i for i in range(4) if mask>>i&1]
+            self.assertAlmostEqual(cost,min(route_length(instance,r) for r in permutations(group)))
+        spec=encoding(instance,[0,1,2,3],'edge')
+        # Cycle depot -> 0 -> 1 -> 2 -> 3 -> depot.
+        edges={(0,1),(1,2),(2,3),(3,4),(0,4)}
+        bits=[int(tuple(e) in edges) for e in spec['variables']]
+        self.assertAlmostEqual(energy(bits,spec),route_length(instance,[0,1,2,3])/(100*np.sqrt(3)))
+
+    def test_saved_plan_traces_and_route_scan(self):
+        data=json.loads((ROOT/'space_demo_results/dashboard.json').read_text())
+        instance=data['instance']
+        self.assertEqual(np.asarray(instance['customers']).shape,(10,3))
+        validate(instance,groups_to_assignment(10,[r['route'] for r in data['routes']]))
+        self.assertAlmostEqual(sum(route_length(instance,r['route']) for r in data['routes']),data['total_distance'])
+        self.assertEqual(sum(a['feasible'] for a in data['clustering']['attempts']),40)
+        for row in data['routes']:
+            best=float('inf')
+            for candidate in row['candidates']:
+                self.assertEqual(set(candidate['route']),set(row['group']))
+                self.assertAlmostEqual(route_length(instance,candidate['route']),candidate['length'])
+                best=min(best,candidate['length'])
+                self.assertAlmostEqual(best,candidate['best_so_far'])
+            if row['atoms']:
+                self.assertAlmostEqual(best,row['length'])
+                self.assertEqual(len(row['occupations']),41)
+                self.assertLessEqual(row['valid_shots'],row['shots'])
+        reference,_,_=references(instance)
+        self.assertAlmostEqual(reference['cvrp_optimum'],data['reference']['cvrp_optimum'])
+
+
+if __name__=='__main__':unittest.main()

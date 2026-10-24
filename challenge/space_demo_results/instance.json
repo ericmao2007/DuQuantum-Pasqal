@@ -1,0 +1,91 @@
+{
+  "id": "SPACE_10_2026",
+  "tier": "M",
+  "seed": 2026,
+  "customers": [
+    [
+      15,
+      30,
+      20
+    ],
+    [
+      22,
+      50,
+      13
+    ],
+    [
+      31,
+      20,
+      34
+    ],
+    [
+      20,
+      60,
+      41
+    ],
+    [
+      65,
+      15,
+      25
+    ],
+    [
+      80,
+      34,
+      40
+    ],
+    [
+      71,
+      52,
+      17
+    ],
+    [
+      62,
+      72,
+      75
+    ],
+    [
+      81,
+      80,
+      65
+    ],
+    [
+      44,
+      82,
+      85
+    ]
+  ],
+  "depot": [
+    50,
+    50,
+    50
+  ],
+  "demands": [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5
+  ],
+  "vehicles": 3,
+  "capacity": 20,
+  "certificate": [
+    0,
+    1,
+    2,
+    0,
+    1,
+    2,
+    0,
+    1,
+    2,
+    0
+  ],
+  "spatial_dimension": 3,
+  "distance_normalizer": 173.20508075688772,
+  "generator": "Fictional fixed 3D planet positions; deterministic coordinates; no orbital or gravitational model"
+}

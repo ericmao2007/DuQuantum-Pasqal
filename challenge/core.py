@@ -49,7 +49,10 @@ def validate(instance, assignment):
     if any(load > q for load in loads):
         raise ValueError('Capacity violation')
     coords = np.array([instance['depot']] + instance['customers'])
-    if coords.shape != (n+1,2) or not np.all(np.isfinite(coords)) or np.any(coords < 0) or np.any(coords > 100):
+    dimension=instance.get('spatial_dimension',2)
+    if dimension not in (2,3):
+        raise ValueError('Only 2D challenge inputs or explicitly marked 3D demos are supported')
+    if coords.shape != (n+1,dimension) or not np.all(np.isfinite(coords)) or np.any(coords < 0) or np.any(coords > 100):
         raise ValueError('Coordinates outside the prescribed square')
     ranges = {'S': 4, 'M': 8, 'L': 10}
     if any(not 1 <= d <= min(q, ranges[instance['tier']]) for d in instance['demands']):
@@ -76,7 +79,7 @@ def canonical(groups):
 
 def pair_costs(instance):
     xy = np.asarray(instance['customers'])
-    return np.linalg.norm(xy[:, None] - xy[None, :], axis=-1) / np.sqrt(20000)
+    return np.linalg.norm(xy[:, None] - xy[None, :], axis=-1) / instance.get('distance_normalizer',100*np.sqrt(instance.get('spatial_dimension',2)))
 
 
 def clustering_cost(groups, pair):
