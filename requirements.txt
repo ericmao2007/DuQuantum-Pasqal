@@ -4,3 +4,5 @@ qubo-solver==0.9.1
 emu-sv==2.10.0
 emu-mps==2.10.0
 pasqal-cloud==0.24.0
+cplex==22.2.0.1
+reportlab==5.1.0

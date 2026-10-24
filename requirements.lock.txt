@@ -9,6 +9,7 @@ cffi==2.1.1
 charset-normalizer==3.5.2
 cloudpickle==3.1.2
 contourpy==1.3.3
+cplex==22.2.0.1
 cryptography==50.0.2
 cycler==0.12.1
 emu-base==2.10.0
@@ -52,6 +53,7 @@ qoolqit==1.5.0
 qubo-solver==0.9.1
 qutip==5.3.1
 referencing==0.37.0
+reportlab==5.1.0
 requests==2.34.2
 rpds-py==2026.9.1
 scikit-learn==1.9.1

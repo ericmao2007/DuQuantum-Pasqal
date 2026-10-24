@@ -1,0 +1,35 @@
+{
+  "tiers": [
+    "S",
+    "M",
+    "L"
+  ],
+  "seeds": [
+    11,
+    29
+  ],
+  "attempts": 32,
+  "methods": [
+    "fast",
+    "slow",
+    "random"
+  ],
+  "max_atoms": 8,
+  "pulse_durations_ns": {
+    "fast": [
+      400,
+      1200,
+      400
+    ],
+    "slow": [
+      800,
+      3600,
+      800
+    ]
+  },
+  "energy_scale": 4.0,
+  "quantum_bank_shots": 1000,
+  "certificate_used_by_optimizer": false,
+  "reference_used_by_optimizer": false,
+  "dmm": false
+}
