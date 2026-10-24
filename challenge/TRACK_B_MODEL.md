@@ -31,7 +31,7 @@ Use one variable e_ij per unordered pair among depot and customers, for n(n+1)/2
 
 sum_i<j c_ij e_ij + A sum_v(sum_edges_incident_to_v e_ij-2)^2.
 
-Each edge has linear coefficient c_ij-6A; pairs of edges sharing a vertex have coefficient 2A; the constant is 4(n+1)A. Degree-two constraints alone permit disjoint subtours in general. Here the encoding is explicitly restricted to n<=4: there are at most five vertices, and a simple undirected cycle uses at least three vertices, so two disjoint cycles cannot fit. Consequently every degree-two solution is one Hamiltonian cycle. The decoder also checks connectivity. The code rejects larger edge encodings rather than silently treating a cycle cover as a TSP tour.
+Each edge has linear coefficient c_ij-6A; pairs of edges sharing a vertex have coefficient 2A; the constant is 4(n+1)A. Degree-two constraints alone permit disjoint subtours in general. For nontrivial execution the encoding is restricted to n=4; the degree argument applies for 2<=n<=4: there are at most five vertices, and a simple undirected cycle uses at least three vertices, so two disjoint cycles cannot fit. Consequently every degree-two solution is one Hamiltonian cycle. The decoder also checks connectivity. The code rejects larger edge encodings rather than silently treating a cycle cover as a TSP tour.
 
 | Customers n | Position variables | Edge variables | Executed? |
 |---|---:|---:|---|

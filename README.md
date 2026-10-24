@@ -98,3 +98,6 @@ python3 -m http.server 8765 --directory sites/atlas-route-lab/dist
 ```
 
 The planetary example uses real XYZ Euclidean distances, fixed fictional coordinates, three ships, and measured quantum clustering/routing evidence. It is a separate 3D demonstration, not a replacement for the official two-dimensional challenge benchmark. The physical atom registers stay 2D. `su` is a fictional distance unit; no solar-system ephemeris or orbital transfer is assumed. Full results are in `challenge/space_demo_results/`.
+
+
+The complete mathematical derivations are collected in [MATH_WRITEUP.md](challenge/MATH_WRITEUP.md), separately from the four-page report. It covers formal CVRP, slack expansion and penalty bounds, sequential subset modeling, native Hamiltonian mapping, both TSP encodings, exact references, and every evaluation metric.
