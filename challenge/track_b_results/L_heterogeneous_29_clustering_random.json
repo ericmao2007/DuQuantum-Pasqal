@@ -1,0 +1,412 @@
+{
+  "metrics": {
+    "instance": "L_heterogeneous_29",
+    "method": "random",
+    "seed": 10029,
+    "track": "A",
+    "attempts": 32,
+    "feasible_attempts": 2,
+    "feasibility_rate": 0.0625,
+    "probability_model_reference": 0.0,
+    "reference_epsilon_percent": 1e-06,
+    "model_gap_percent": 24.762042962299713,
+    "cvrp_gap_percent": 29.471891949031214,
+    "best_model_cost": 16.20414592073844,
+    "model_selected_cvrp_gap_percent": 29.471891949031214,
+    "best_cvrp_routed_cost": 736.3481798615628,
+    "probability_cvrp_reference": 0.0,
+    "best_shot_exact_routed_cost": 736.3481798615628,
+    "peak_atoms": 8,
+    "slack_atoms": 0,
+    "sequential_calls_per_attempt_max": 3,
+    "raw_stage_feasibility_rate": 0.53125,
+    "embedding_error_mean": null,
+    "embedding_error_max": null,
+    "backend_calls": 0,
+    "backend_shots": 0,
+    "sample_bank_shots": 0,
+    "sampling_protocol": "independent fair bits; same window and rejection",
+    "backend": "numpy random",
+    "bond_dimension": "not applicable: no MPS truncation",
+    "global_detuning_only": true,
+    "noise": false,
+    "modulation": false,
+    "reference_status": "proven optimum: exhaustive feasible subsets, exact partition DP",
+    "elapsed_seconds": 0.0008504581637680531,
+    "backend_and_embedding_seconds": 0.0,
+    "total_demand": 101,
+    "load_ratio": 0.8416666666666667,
+    "largest_demand_ratio": 0.26666666666666666
+  },
+  "best_plan": {
+    "attempt": 30,
+    "feasible": true,
+    "groups": [
+      [
+        0,
+        9,
+        11,
+        13
+      ],
+      [
+        1,
+        6,
+        10,
+        14
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        5,
+        7,
+        8,
+        12
+      ]
+    ],
+    "loads": [
+      25,
+      21,
+      28,
+      27
+    ],
+    "model_cost": 16.20414592073844,
+    "routed_cost": 736.3481798615628,
+    "routes": [
+      [
+        13,
+        9,
+        0,
+        11
+      ],
+      [
+        14,
+        1,
+        10,
+        6
+      ],
+      [
+        3,
+        2,
+        4
+      ],
+      [
+        12,
+        5,
+        8,
+        7
+      ]
+    ]
+  },
+  "best_cvrp_plan": {
+    "attempt": 30,
+    "feasible": true,
+    "groups": [
+      [
+        0,
+        9,
+        11,
+        13
+      ],
+      [
+        1,
+        6,
+        10,
+        14
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        5,
+        7,
+        8,
+        12
+      ]
+    ],
+    "loads": [
+      25,
+      21,
+      28,
+      27
+    ],
+    "model_cost": 16.20414592073844,
+    "routed_cost": 736.3481798615628,
+    "routes": [
+      [
+        13,
+        9,
+        0,
+        11
+      ],
+      [
+        14,
+        1,
+        10,
+        6
+      ],
+      [
+        3,
+        2,
+        4
+      ],
+      [
+        12,
+        5,
+        8,
+        7
+      ]
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 0,
+      "feasible": false
+    },
+    {
+      "attempt": 1,
+      "feasible": false
+    },
+    {
+      "attempt": 2,
+      "feasible": false
+    },
+    {
+      "attempt": 3,
+      "feasible": false
+    },
+    {
+      "attempt": 4,
+      "feasible": false
+    },
+    {
+      "attempt": 5,
+      "feasible": false
+    },
+    {
+      "attempt": 6,
+      "feasible": false
+    },
+    {
+      "attempt": 7,
+      "feasible": false
+    },
+    {
+      "attempt": 8,
+      "feasible": false
+    },
+    {
+      "attempt": 9,
+      "feasible": false
+    },
+    {
+      "attempt": 10,
+      "feasible": false
+    },
+    {
+      "attempt": 11,
+      "feasible": false
+    },
+    {
+      "attempt": 12,
+      "feasible": false
+    },
+    {
+      "attempt": 13,
+      "feasible": false
+    },
+    {
+      "attempt": 14,
+      "feasible": false
+    },
+    {
+      "attempt": 15,
+      "feasible": false
+    },
+    {
+      "attempt": 16,
+      "feasible": false
+    },
+    {
+      "attempt": 17,
+      "feasible": false
+    },
+    {
+      "attempt": 18,
+      "feasible": false
+    },
+    {
+      "attempt": 19,
+      "feasible": false
+    },
+    {
+      "attempt": 20,
+      "feasible": false
+    },
+    {
+      "attempt": 21,
+      "feasible": false
+    },
+    {
+      "attempt": 22,
+      "feasible": false
+    },
+    {
+      "attempt": 23,
+      "feasible": false
+    },
+    {
+      "attempt": 24,
+      "feasible": true,
+      "groups": [
+        [
+          0,
+          3,
+          6,
+          9
+        ],
+        [
+          1,
+          5,
+          7,
+          8
+        ],
+        [
+          2,
+          10,
+          12,
+          14
+        ],
+        [
+          4,
+          11,
+          13
+        ]
+      ],
+      "loads": [
+        27,
+        18,
+        29,
+        27
+      ],
+      "model_cost": 17.175842549902335,
+      "routed_cost": 797.41499900157,
+      "routes": [
+        [
+          6,
+          9,
+          0,
+          3
+        ],
+        [
+          1,
+          7,
+          8,
+          5
+        ],
+        [
+          14,
+          2,
+          10,
+          12
+        ],
+        [
+          13,
+          11,
+          4
+        ]
+      ]
+    },
+    {
+      "attempt": 25,
+      "feasible": false
+    },
+    {
+      "attempt": 26,
+      "feasible": false
+    },
+    {
+      "attempt": 27,
+      "feasible": false
+    },
+    {
+      "attempt": 28,
+      "feasible": false
+    },
+    {
+      "attempt": 29,
+      "feasible": false
+    },
+    {
+      "attempt": 30,
+      "feasible": true,
+      "groups": [
+        [
+          0,
+          9,
+          11,
+          13
+        ],
+        [
+          1,
+          6,
+          10,
+          14
+        ],
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          5,
+          7,
+          8,
+          12
+        ]
+      ],
+      "loads": [
+        25,
+        21,
+        28,
+        27
+      ],
+      "model_cost": 16.20414592073844,
+      "routed_cost": 736.3481798615628,
+      "routes": [
+        [
+          13,
+          9,
+          0,
+          11
+        ],
+        [
+          14,
+          1,
+          10,
+          6
+        ],
+        [
+          3,
+          2,
+          4
+        ],
+        [
+          12,
+          5,
+          8,
+          7
+        ]
+      ]
+    },
+    {
+      "attempt": 31,
+      "feasible": false
+    }
+  ],
+  "banks": []
+}

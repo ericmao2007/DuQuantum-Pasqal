@@ -1,0 +1,239 @@
+{
+  "metrics": {
+    "instance": "L_11",
+    "method": "random_random_global",
+    "seed": 20011,
+    "track": "B",
+    "clustering_method": "random",
+    "model_gap_percent": 29.05805837566,
+    "clustering_feasibility_rate": 0.46875,
+    "model_reference_probability": 0.0,
+    "cvrp_gap_percent": 66.75381932342437,
+    "routing_gap_percent": null,
+    "end_to_end_gap_percent": 66.75381932342437,
+    "decomposition_gap_percent": 9.223035949640574,
+    "decomposition_loss": 42.25302764663451,
+    "clustering_loss": 263.5628651669474,
+    "routing_loss": 0.0,
+    "end_to_end_cost": 763.940829952975,
+    "selected_clustering_exact_cost": 763.940829952975,
+    "pipeline_feasible": true,
+    "trivial_clusters": 1,
+    "classically_routed_nontrivial_clusters": 0,
+    "nontrivial_clusters": 3,
+    "quantum_routed_nontrivial_clusters": 0,
+    "quantum_nontrivial_fraction": 0.0,
+    "quantum_route_raw_joint_reference_probability": null,
+    "routing_raw_feasibility_rate": null,
+    "reference_epsilon_percent": 1e-06,
+    "reference_status": "proven optimum: exhaustive feasible subsets, exact partition DP",
+    "routing_peak_atoms": 0,
+    "peak_atoms": 8,
+    "clustering_backend_calls": 0,
+    "clustering_backend_shots": 0,
+    "routing_backend_calls": 0,
+    "routing_backend_shots": 0,
+    "dmm_routing": false,
+    "global_detuning_clustering": true,
+    "noise": false,
+    "modulation": false,
+    "backend": "QutipBackendV2; state-vector without bond truncation",
+    "routing_max_customers": 4,
+    "routing_shots_per_cluster": 2000,
+    "joint_probability_semantics": "product of raw conditional routing hit rates; excludes trivial and fallback; conditional on selected clustering",
+    "routing_embedding_error_mean": null,
+    "routing_linear_error_max": null,
+    "clustering_embedding_error_mean": null,
+    "total_demand": 90,
+    "load_ratio": 0.75,
+    "largest_demand_ratio": 0.2,
+    "conditional_raw_routing_feasibility": null,
+    "conditional_end_to_end_reference_probability": 0.0,
+    "conditional_probability_note": "raw independent route draws conditional on the fixed model-selected clustering; not unconditional CVRP or best-of-batch success",
+    "clustering_elapsed_seconds": 0.0015354999341070652,
+    "routing_elapsed_seconds": 0.03956525074318051,
+    "reference_evaluation_seconds": 0.659849832765758,
+    "reference_timing_note": "offline reference evaluation, not online quantum decoding"
+  },
+  "routes": [
+    [
+      10,
+      0,
+      13,
+      12
+    ],
+    [
+      1,
+      7,
+      2
+    ],
+    [
+      5,
+      3,
+      4,
+      11
+    ],
+    [
+      8,
+      9,
+      14,
+      6
+    ]
+  ],
+  "clustering": {
+    "attempt": 30,
+    "feasible": true,
+    "groups": [
+      [
+        0,
+        10,
+        12,
+        13
+      ],
+      [
+        1,
+        2,
+        7
+      ],
+      [
+        3,
+        4,
+        5,
+        11
+      ],
+      [
+        6,
+        8,
+        9,
+        14
+      ]
+    ],
+    "loads": [
+      18,
+      24,
+      24,
+      24
+    ],
+    "model_cost": 15.99651149188961,
+    "routed_cost": 763.940829952975,
+    "routes": [
+      [
+        10,
+        0,
+        13,
+        12
+      ],
+      [
+        1,
+        7,
+        2
+      ],
+      [
+        5,
+        3,
+        4,
+        11
+      ],
+      [
+        8,
+        9,
+        14,
+        6
+      ]
+    ]
+  },
+  "clusters": [
+    {
+      "instance": "L_11",
+      "cluster": 0,
+      "customers": 4,
+      "group": "[0, 10, 12, 13]",
+      "routing_method": "uniform_random_permutations",
+      "atoms": 0,
+      "dmm": false,
+      "trivial": false,
+      "classically_routed": false,
+      "quantum_attempted": false,
+      "quantum_success": false,
+      "exact_tsp": 220.18587255746647,
+      "tour_length": 220.18587255746647,
+      "gap_percent": 0.0,
+      "raw_feasibility_rate": 1.0,
+      "raw_reference_probability": 0.0875,
+      "shots": 2000,
+      "embedding_error": null,
+      "linear_error": null,
+      "elapsed_seconds": 0.012530500069260597,
+      "pipeline_method": "random_random_global"
+    },
+    {
+      "instance": "L_11",
+      "cluster": 1,
+      "customers": 3,
+      "group": "[1, 2, 7]",
+      "routing_method": "exact_trivial",
+      "atoms": 0,
+      "dmm": false,
+      "trivial": true,
+      "classically_routed": false,
+      "quantum_attempted": false,
+      "quantum_success": false,
+      "exact_tsp": 206.66540286537122,
+      "tour_length": 206.66540286537122,
+      "gap_percent": 0.0,
+      "raw_feasibility_rate": null,
+      "raw_reference_probability": null,
+      "shots": 0,
+      "embedding_error": null,
+      "linear_error": null,
+      "elapsed_seconds": 0.0,
+      "pipeline_method": "random_random_global"
+    },
+    {
+      "instance": "L_11",
+      "cluster": 2,
+      "customers": 4,
+      "group": "[3, 4, 5, 11]",
+      "routing_method": "uniform_random_permutations",
+      "atoms": 0,
+      "dmm": false,
+      "trivial": false,
+      "classically_routed": false,
+      "quantum_attempted": false,
+      "quantum_success": false,
+      "exact_tsp": 209.67537123695934,
+      "tour_length": 209.67537123695934,
+      "gap_percent": 0.0,
+      "raw_feasibility_rate": 1.0,
+      "raw_reference_probability": 0.0825,
+      "shots": 2000,
+      "embedding_error": null,
+      "linear_error": null,
+      "elapsed_seconds": 0.013675708789378405,
+      "pipeline_method": "random_random_global"
+    },
+    {
+      "instance": "L_11",
+      "cluster": 3,
+      "customers": 4,
+      "group": "[6, 8, 9, 14]",
+      "routing_method": "uniform_random_permutations",
+      "atoms": 0,
+      "dmm": false,
+      "trivial": false,
+      "classically_routed": false,
+      "quantum_attempted": false,
+      "quantum_success": false,
+      "exact_tsp": 127.41418329317793,
+      "tour_length": 127.41418329317793,
+      "gap_percent": 0.0,
+      "raw_feasibility_rate": 1.0,
+      "raw_reference_probability": 0.0835,
+      "shots": 2000,
+      "embedding_error": null,
+      "linear_error": null,
+      "elapsed_seconds": 0.013359041884541512,
+      "pipeline_method": "random_random_global"
+    }
+  ]
+}

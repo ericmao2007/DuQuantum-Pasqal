@@ -21,9 +21,9 @@ def evaluate(instance, reference, route_costs, route_orders, method, seed, attem
     stage_valid = stage_total = 0
     start = time.perf_counter()
     n, k = len(pair), instance['vehicles']
-    # Equal demand makes this cardinality look-ahead exact, not a bin-packing solver.
-    assert len(set(instance['demands'])) == 1
-    max_count = instance['capacity'] // instance['demands'][0]
+    demands = instance['demands']
+    capacity = instance['capacity']
+    # A necessary load bound only; heterogeneous packability is not solved classically.
     for attempt in range(attempts):
         remaining, groups = set(range(n)), []
         failed = False
@@ -33,13 +33,13 @@ def evaluate(instance, reference, route_costs, route_orders, method, seed, attem
             selected = sampler.draw(remaining, left, rng)
             stage_total += 1
             # Empty vehicles are valid. Reject, rather than repair, bad shots.
-            if len(selected) > max_count or len(remaining) - len(selected) > (left - 1) * max_count:
+            if sum(demands[i] for i in selected) > capacity or sum(demands[i] for i in remaining.difference(selected)) > (left-1)*capacity:
                 failed = True
                 break
             stage_valid += 1
             groups.append(selected)
             remaining.difference_update(selected)
-        if failed or len(remaining) > max_count:
+        if failed or sum(demands[i] for i in remaining) > capacity:
             plans.append({'attempt': attempt, 'feasible': False})
             continue
         groups.append(sorted(remaining))

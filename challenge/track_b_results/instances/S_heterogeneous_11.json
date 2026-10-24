@@ -1,0 +1,42 @@
+{
+  "id": "S_heterogeneous_11",
+  "tier": "S",
+  "seed": 11,
+  "customers": [
+    [
+      12.857020276919961,
+      49.92778624401149
+    ],
+    [
+      60.14983576233575,
+      2.8689008371944547
+    ],
+    [
+      14.792608457745594,
+      92.82110229603695
+    ],
+    [
+      7.042057615419683,
+      12.977394939929798
+    ]
+  ],
+  "depot": [
+    50.0,
+    50.0
+  ],
+  "demands": [
+    3,
+    3,
+    4,
+    2
+  ],
+  "vehicles": 2,
+  "capacity": 7,
+  "certificate": [
+    0,
+    1,
+    0,
+    1
+  ],
+  "generator": "seeded varied integer demands; reduce cyclic certificate loads until capacity fits"
+}

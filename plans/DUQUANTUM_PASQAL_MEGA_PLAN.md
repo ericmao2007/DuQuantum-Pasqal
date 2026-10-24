@@ -430,3 +430,9 @@ Before accepting the plan, review adversarially: can an independent person recon
 - **S6:** [Official unitaryCON demonstration](https://github.com/pasqal-io/unitaryCON_Pasqal_Demo/tree/0127a38e98be806e7fd9e32001c55d9371b3a6cf): separate preparation reference; its pins are not the team environment contract.
 
 All schedules, roles, budgets, proposed paths and acceptance targets in this document are planning choices. No benchmark improvement, hardware result, actual submission, or implemented solver is claimed by publication of this plan.
+
+### Execution update: 24 October 2026
+
+The final CVRP brief is now available and its requirements are recorded in `docs/challenge_contract.md`. The implemented Track A/Track B pipeline is documented in the root README, `challenge/MODEL.md`, and `challenge/TRACK_B_MODEL.md`. Saved evidence covers S/M/L, two instance seeds, uniform and heterogeneous demands, two TSP encodings, global versus emulator-only DMM controls, random baselines, exact references, capacity certificates, per-cluster fallback labels, and the loss identity. The full benchmark has 12 instances and 60 method rows. Nine automated tests pass, including exhaustive four-customer encoding checks and S-tier brute-force/CPLEX agreement. The four-page final report is `challenge/track_b_results/report.pdf`.
+
+This closes the technical implementation/evidence path with explicit failures and limitations. It does not claim a successful answer on every instance, statistical quantum advantage, hardware execution, a competition-portal submission, or completion of presentation/logistics tasks whose deadline and format were not supplied.

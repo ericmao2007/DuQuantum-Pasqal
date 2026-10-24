@@ -1,61 +1,68 @@
-# DuQuantum Pasqal Challenge
+# DuQuantum Pasqal: CVRP Quantum Pipeline
 
-A reproducible **Track A** baseline for the CVRP challenge: sequential, slack-free, global-detuning quantum clustering with at most eight atoms at once. Exact classical routing is used for evaluation, not presented as quantum routing. Code and documents are in English.
+A reproducible **Track A + Track B** emulator submission: sequential quantum clustering, two TSP encodings, explicit global/DMM controls, exact evaluation, and honest failure/fallback accounting. All source and documents are in English. No hardware execution or quantum advantage is claimed.
 
-## Reproduce
+## One-command reproduction
 
-From this directory, with `uv` installed:
-
-```bash
-uv run --python 3.11 --with-requirements requirements.lock.txt python -m challenge.run
-```
-
-For the existing project environment:
+From the repository root with `uv` installed:
 
 ```bash
-.venv/bin/python -m challenge.run
+uv run --python 3.11 --with-requirements requirements.lock.txt python -m challenge.track_b
 ```
 
-This regenerates six certified instances (S/M/L, seeds 11 and 29), exact references, two quantum pulse baselines and a random baseline, and `challenge/results/results.csv`. Each row has 32 full sequential attempts. Runtime depends on hardware; quantum banks and reference evaluation are classical simulations. The command needs no cloud credentials. Offline after dependency installation, use the `.venv` command.
-
-Quick smoke run (overwrites the aggregate CSV with only the requested rows):
+Using the existing project environment:
 
 ```bash
-.venv/bin/python -m challenge.run --tiers S --seeds 11 --attempts 8
+.venv/bin/python -m challenge.track_b
 ```
 
-Full reruns replace matching result files. Run the default command again to restore the complete benchmark CSV.
+This generates 12 certified instances (S/M/L, seeds 11/29, uniform and heterogeneous demands), exact references, quantum and random baselines, 60 method rows, per-cluster evidence, plots, and the four-page report under `challenge/track_b_results/`. Quantum clustering uses at most 8 atoms per call; routing uses 10 edge or 16 position atoms for four-customer clusters. All computation is local. Full state-vector route simulation takes materially longer than the tutorials; runtime depends on hardware. No cloud credentials are needed.
 
-## Read the work
-
-- [Model, derivations, variable accounting, and limitations](challenge/MODEL.md)
-- [Instance generator, validator, and exact references](challenge/core.py)
-- [Embedding and legal Pulser pulses](challenge/quantum.py)
-- [Benchmark runner and metric definitions](challenge/run.py)
-- [Results CSV](challenge/results/results.csv)
-- [Programming with Pulser tutorial](examples/README.md)
-- [Register and blockade tutorial](examples/REGISTER_INTERACTIONS.md)
-
-The current benchmark deliberately uses equal demands. Capacity is enforced by rejecting measured subsets, not by an exact capacity penalty in the Hamiltonian. A seeded eight-customer window and sequential decisions limit the search space. The final vehicle receives the remainder. Coupling error, failures, finite cached-bank sampling, and random-baseline comparisons are reported explicitly. This is not a heterogeneous-demand solver, Track B quantum-routing submission, or quantum-advantage claim.
-
-## Follow the pipeline step by step
-
-1. Read `challenge/MODEL.md`: distinguish the actual CVRP objective from the compact-clustering surrogate and from the approximate native energy.
-2. `generate()` creates locations and demands from a seed. The certificate proves feasibility; `validate()` checks exact coverage and loads.
-3. `Sampler.pool()` takes a seeded, geometry-independent window. Each atom represents whether its customer joins the current vehicle.
-4. `embed()` fits the positive target couplings with physical distances. Saved errors show how much information this approximation loses.
-5. `Sampler.draw()` builds a global-detuning Pulser sequence and obtains a 1000-shot conditional bank from QutipBackendV2.
-6. `evaluate()` draws one subset per vehicle stage, rejects infeasible choices, and keeps every full trajectory in the feasibility denominator. It performs no repair or search.
-7. `references()` runs expensive exact solvers strictly for scoring. Classical TSP turns each sampled clustering into a travel-distance score.
-8. `report.build()` creates the comparison plots and four-page English report. Inspect both model and CVRP gaps, not just the best-looking metric.
-
-## Verification
+For a small full-pipeline smoke run:
 
 ```bash
-.venv/bin/python -m unittest challenge.test_challenge -v
-.venv/bin/python -m challenge.report
+.venv/bin/python -m challenge.track_b --tiers M --seeds 11 --families uniform
 ```
 
-The tests independently check certificates, invalid assignments, integer slack penalties, exact references against brute force and CPLEX, and saved physical layouts and feasible trajectories. The report source is `challenge/report.py`; its output is `challenge/results/report.pdf`.
+A smoke run replaces the aggregate CSV/report with its selected subset. Run the default command again to restore the complete benchmark. Historical Track A outputs remain in `challenge/results/` and are never overwritten by Track B.
 
-The exploratory log-coupling-fit baseline is retained in `challenge/experiments/log_loss_baseline.csv` to document a failed embedding choice. Its errors should not be confused with the final squared-coupling-fit benchmark. The report records what did not work and the use of AI.
+## What to read
+
+- [Official requirements mapped to evidence](docs/challenge_contract.md)
+- [Clustering model, formal CVRP, textbook slack, and atom accounting](challenge/MODEL.md)
+- [Routing models, heterogeneous demands, DMM, evaluation, and limits](challenge/TRACK_B_MODEL.md)
+- [Final four-page report](challenge/track_b_results/report.pdf)
+- [End-to-end results](challenge/track_b_results/results.csv)
+- [Per-cluster comparisons and fallback labels](challenge/track_b_results/clusters.csv)
+- [Machine-readable result summary](challenge/track_b_results/summary.json)
+
+## Follow the implementation
+
+1. `challenge/core.py`: seeded generators, independently checked feasibility certificates, original-cost evaluation, exact references, and S-tier CPLEX cross-checks.
+2. `challenge/quantum.py`: eight-customer quantum proposal window, constrained native embedding, legal global-detuning pulses, and saved conditional shot banks.
+3. `challenge/run.py`: measured subset decoding, rejection without repair, and historical Track A benchmark.
+4. `challenge/routing.py`: customer/position and undirected-edge TSP QUBOs, strict decoders, legal global or emulator-DMM pulses, and measured route selection.
+5. `challenge/track_b.py`: merges quantum clustering and routing, keeps declared size fallbacks separate, and checks the absolute loss identity.
+6. `challenge/summarize_b.py` and `challenge/report_b.py`: regenerate metrics, plots, and the report directly from saved evidence without changing quantum choices.
+
+## Verify or rebuild the report
+
+```bash
+.venv/bin/python -m unittest challenge.test_challenge challenge.test_routing -v
+.venv/bin/python -m challenge.summarize_b
+.venv/bin/python -m challenge.report_b
+```
+
+Tests exhaustively inspect all 1024 edge and 65536 position bitstrings for a four-customer fixture. They also check certificates, exact references against independent solvers, route coverage/capacity, native geometry, raw shot counts, and loss decomposition. Full saved-evidence tests expect the complete default benchmark.
+
+The original Track A benchmark remains reproducible with `python -m challenge.run`. Tutorial scripts remain in `examples/` with their English guides and outputs.
+
+## Limits that matter
+
+- Capacity is enforced by rejecting measured assignments, not by an exact analog capacity penalty. Heterogeneous remaining-load checks are necessary but not sufficient for completion.
+- Sequential choices and the seeded eight-customer window restrict search. Certificates and exact references are never used to repair a quantum choice.
+- Both TSP QUBOs are implemented and tested. Edge encoding uses fewer atoms; degree-only edge constraints are exact here only for at most four customers. Larger clusters use an explicitly declared classical size fallback.
+- Clusters of at most three customers are trivial and excluded from quantum routing metrics. A failed four-customer quantum run stays failed; it is not classically repaired.
+- DMM routing is emulator-only and reported separately from global-only control. Coupling and linear errors are saved; all physical long-range interactions remain.
+- Finite conditional banks and best-of-shot selection are hybrid costs. Raw conditional hit rates are not unconditional CVRP success probabilities. Random valid-route sampling is a strong baseline on these small clusters.
+- The report records failed embeddings/encodings, missing feasible trajectories, classical contributions, and AI use. A model-selected clustering can have a worse CVRP route than another clustering.

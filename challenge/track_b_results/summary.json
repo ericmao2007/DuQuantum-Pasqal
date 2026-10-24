@@ -1,0 +1,44 @@
+{
+  "instances": 12,
+  "rows": 60,
+  "feasible_returned_pipelines": 49,
+  "full_random_baseline_rows": 12,
+  "quantum_route_failure_rows": 6,
+  "methods": {
+    "random_random_global": {
+      "rows": 12,
+      "returned_feasible": 11,
+      "quantum_calls": 0,
+      "successful_nontrivial_quantum_clusters": 0,
+      "classical_size_fallbacks": 1
+    },
+    "slow_edge_dmm": {
+      "rows": 12,
+      "returned_feasible": 11,
+      "quantum_calls": 15,
+      "successful_nontrivial_quantum_clusters": 15,
+      "classical_size_fallbacks": 0
+    },
+    "slow_edge_global": {
+      "rows": 12,
+      "returned_feasible": 11,
+      "quantum_calls": 15,
+      "successful_nontrivial_quantum_clusters": 15,
+      "classical_size_fallbacks": 0
+    },
+    "slow_position_dmm": {
+      "rows": 12,
+      "returned_feasible": 5,
+      "quantum_calls": 15,
+      "successful_nontrivial_quantum_clusters": 8,
+      "classical_size_fallbacks": 0
+    },
+    "slow_random_global": {
+      "rows": 12,
+      "returned_feasible": 11,
+      "quantum_calls": 0,
+      "successful_nontrivial_quantum_clusters": 0,
+      "classical_size_fallbacks": 0
+    }
+  }
+}

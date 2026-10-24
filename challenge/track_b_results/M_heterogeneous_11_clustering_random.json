@@ -1,0 +1,174 @@
+{
+  "metrics": {
+    "instance": "M_heterogeneous_11",
+    "method": "random",
+    "seed": 10011,
+    "track": "A",
+    "attempts": 32,
+    "feasible_attempts": 0,
+    "feasibility_rate": 0.0,
+    "probability_model_reference": 0.0,
+    "reference_epsilon_percent": 1e-06,
+    "model_gap_percent": null,
+    "cvrp_gap_percent": null,
+    "best_model_cost": null,
+    "model_selected_cvrp_gap_percent": null,
+    "best_cvrp_routed_cost": null,
+    "probability_cvrp_reference": 0.0,
+    "best_shot_exact_routed_cost": null,
+    "peak_atoms": 8,
+    "slack_atoms": 0,
+    "sequential_calls_per_attempt_max": 2,
+    "raw_stage_feasibility_rate": 0.058823529411764705,
+    "embedding_error_mean": null,
+    "embedding_error_max": null,
+    "backend_calls": 0,
+    "backend_shots": 0,
+    "sample_bank_shots": 0,
+    "sampling_protocol": "independent fair bits; same window and rejection",
+    "backend": "numpy random",
+    "bond_dimension": "not applicable: no MPS truncation",
+    "global_detuning_only": true,
+    "noise": false,
+    "modulation": false,
+    "reference_status": "proven optimum: exhaustive feasible subsets, exact partition DP",
+    "elapsed_seconds": 0.0004375842399895191,
+    "backend_and_embedding_seconds": 0.0,
+    "total_demand": 59,
+    "load_ratio": 0.9833333333333333,
+    "largest_demand_ratio": 0.35
+  },
+  "best_plan": null,
+  "best_cvrp_plan": null,
+  "attempts": [
+    {
+      "attempt": 0,
+      "feasible": false
+    },
+    {
+      "attempt": 1,
+      "feasible": false
+    },
+    {
+      "attempt": 2,
+      "feasible": false
+    },
+    {
+      "attempt": 3,
+      "feasible": false
+    },
+    {
+      "attempt": 4,
+      "feasible": false
+    },
+    {
+      "attempt": 5,
+      "feasible": false
+    },
+    {
+      "attempt": 6,
+      "feasible": false
+    },
+    {
+      "attempt": 7,
+      "feasible": false
+    },
+    {
+      "attempt": 8,
+      "feasible": false
+    },
+    {
+      "attempt": 9,
+      "feasible": false
+    },
+    {
+      "attempt": 10,
+      "feasible": false
+    },
+    {
+      "attempt": 11,
+      "feasible": false
+    },
+    {
+      "attempt": 12,
+      "feasible": false
+    },
+    {
+      "attempt": 13,
+      "feasible": false
+    },
+    {
+      "attempt": 14,
+      "feasible": false
+    },
+    {
+      "attempt": 15,
+      "feasible": false
+    },
+    {
+      "attempt": 16,
+      "feasible": false
+    },
+    {
+      "attempt": 17,
+      "feasible": false
+    },
+    {
+      "attempt": 18,
+      "feasible": false
+    },
+    {
+      "attempt": 19,
+      "feasible": false
+    },
+    {
+      "attempt": 20,
+      "feasible": false
+    },
+    {
+      "attempt": 21,
+      "feasible": false
+    },
+    {
+      "attempt": 22,
+      "feasible": false
+    },
+    {
+      "attempt": 23,
+      "feasible": false
+    },
+    {
+      "attempt": 24,
+      "feasible": false
+    },
+    {
+      "attempt": 25,
+      "feasible": false
+    },
+    {
+      "attempt": 26,
+      "feasible": false
+    },
+    {
+      "attempt": 27,
+      "feasible": false
+    },
+    {
+      "attempt": 28,
+      "feasible": false
+    },
+    {
+      "attempt": 29,
+      "feasible": false
+    },
+    {
+      "attempt": 30,
+      "feasible": false
+    },
+    {
+      "attempt": 31,
+      "feasible": false
+    }
+  ],
+  "banks": []
+}

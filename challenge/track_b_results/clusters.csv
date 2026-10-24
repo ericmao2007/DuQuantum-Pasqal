@@ -1,0 +1,166 @@
+instance,cluster,customers,group,routing_method,atoms,dmm,trivial,classically_routed,quantum_attempted,quantum_success,exact_tsp,tour_length,gap_percent,raw_feasibility_rate,raw_reference_probability,shots,embedding_error,linear_error,elapsed_seconds,pipeline_method
+S_11,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,135.5165313203276,135.5165313203276,0.0,,,0,,,0.0,slow_edge_global
+S_11,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,158.9831540057483,158.9831540057483,0.0,,,0,,,0.0,slow_edge_global
+S_11,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,135.5165313203276,135.5165313203276,0.0,,,0,,,0.0,slow_edge_dmm
+S_11,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,158.9831540057483,158.9831540057483,0.0,,,0,,,0.0,slow_edge_dmm
+S_11,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,135.5165313203276,135.5165313203276,0.0,,,0,,,0.0,slow_position_dmm
+S_11,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,158.9831540057483,158.9831540057483,0.0,,,0,,,0.0,slow_position_dmm
+S_11,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,135.5165313203276,135.5165313203276,0.0,,,0,,,0.0,slow_random_global
+S_11,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,158.9831540057483,158.9831540057483,0.0,,,0,,,0.0,slow_random_global
+S_11,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,135.5165313203276,135.5165313203276,0.0,,,0,,,0.0,random_random_global
+S_11,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,158.9831540057483,158.9831540057483,0.0,,,0,,,0.0,random_random_global
+S_29,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,154.79509501673772,154.79509501673772,0.0,,,0,,,0.0,slow_edge_global
+S_29,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,56.580764207063154,56.580764207063154,0.0,,,0,,,0.0,slow_edge_global
+S_29,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,154.79509501673772,154.79509501673772,0.0,,,0,,,0.0,slow_edge_dmm
+S_29,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,56.580764207063154,56.580764207063154,0.0,,,0,,,0.0,slow_edge_dmm
+S_29,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,154.79509501673772,154.79509501673772,0.0,,,0,,,0.0,slow_position_dmm
+S_29,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,56.580764207063154,56.580764207063154,0.0,,,0,,,0.0,slow_position_dmm
+S_29,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,154.79509501673772,154.79509501673772,0.0,,,0,,,0.0,slow_random_global
+S_29,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,56.580764207063154,56.580764207063154,0.0,,,0,,,0.0,slow_random_global
+S_29,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,154.79509501673772,154.79509501673772,0.0,,,0,,,0.0,random_random_global
+S_29,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,56.580764207063154,56.580764207063154,0.0,,,0,,,0.0,random_random_global
+M_11,0,3,"[0, 3, 7]",exact_trivial,0,False,True,False,False,False,169.27071185496763,169.27071185496763,0.0,,,0,,,0.0,slow_edge_global
+M_11,1,3,"[1, 2, 5]",exact_trivial,0,False,True,False,False,False,204.40761623959605,204.40761623959605,0.0,,,0,,,0.0,slow_edge_global
+M_11,2,4,"[4, 6, 8, 9]",edge_global,10,False,False,False,True,True,119.86186124914398,121.15117497092442,1.075666361546368,0.004,0.0,2000,0.6751745586455483,0.0012564638495116552,0.36035295901820064,slow_edge_global
+M_11,0,3,"[0, 3, 7]",exact_trivial,0,False,True,False,False,False,169.27071185496763,169.27071185496763,0.0,,,0,,,0.0,slow_edge_dmm
+M_11,1,3,"[1, 2, 5]",exact_trivial,0,False,True,False,False,False,204.40761623959605,204.40761623959605,0.0,,,0,,,0.0,slow_edge_dmm
+M_11,2,4,"[4, 6, 8, 9]",edge_dmm,10,True,False,False,True,True,119.86186124914398,121.15117497092442,1.075666361546368,0.003,0.0,2000,0.6751745586455483,0.0,0.5525317080318928,slow_edge_dmm
+M_11,0,3,"[0, 3, 7]",exact_trivial,0,False,True,False,False,False,169.27071185496763,169.27071185496763,0.0,,,0,,,0.0,slow_position_dmm
+M_11,1,3,"[1, 2, 5]",exact_trivial,0,False,True,False,False,False,204.40761623959605,204.40761623959605,0.0,,,0,,,0.0,slow_position_dmm
+M_11,2,4,"[4, 6, 8, 9]",position_dmm,16,True,False,False,True,False,119.86186124914398,,,0.0,0.0,2000,0.7571767775894115,0.0,18.448570707812905,slow_position_dmm
+M_11,0,3,"[0, 3, 7]",exact_trivial,0,False,True,False,False,False,169.27071185496763,169.27071185496763,0.0,,,0,,,0.0,slow_random_global
+M_11,1,3,"[1, 2, 5]",exact_trivial,0,False,True,False,False,False,204.40761623959605,204.40761623959605,0.0,,,0,,,0.0,slow_random_global
+M_11,2,4,"[4, 6, 8, 9]",uniform_random_permutations,0,False,False,False,False,False,119.86186124914398,119.86186124914398,0.0,1.0,0.0875,2000,,,0.012841917108744383,slow_random_global
+M_11,0,4,"[0, 2, 5, 7]",uniform_random_permutations,0,False,False,False,False,False,135.603337771817,135.603337771817,0.0,1.0,0.094,2000,,,0.012429332826286554,random_random_global
+M_11,1,4,"[1, 3, 4, 8]",uniform_random_permutations,0,False,False,False,False,False,226.44308799175565,226.44308799175565,0.0,1.0,0.0855,2000,,,0.012294500134885311,random_random_global
+M_11,2,2,"[6, 9]",exact_trivial,0,False,True,False,False,False,91.20677903589575,91.20677903589575,0.0,,,0,,,0.0,random_random_global
+M_29,0,4,"[0, 2, 3, 4]",edge_global,10,False,False,False,True,True,156.76958689430725,156.76958689430728,2.220446049250313e-14,0.0025,0.0005,2000,0.6751745586455483,0.001574846619754054,0.3638364998623729,slow_edge_global
+M_29,1,3,"[1, 6, 9]",exact_trivial,0,False,True,False,False,False,260.2683105754224,260.2683105754224,0.0,,,0,,,0.0,slow_edge_global
+M_29,2,3,"[5, 7, 8]",exact_trivial,0,False,True,False,False,False,116.99913181005502,116.99913181005502,0.0,,,0,,,0.0,slow_edge_global
+M_29,0,4,"[0, 2, 3, 4]",edge_dmm,10,True,False,False,True,True,156.76958689430725,164.34446504942412,4.831854382715051,0.004,0.0,2000,0.6751745586455483,0.0,0.5623572082258761,slow_edge_dmm
+M_29,1,3,"[1, 6, 9]",exact_trivial,0,False,True,False,False,False,260.2683105754224,260.2683105754224,0.0,,,0,,,0.0,slow_edge_dmm
+M_29,2,3,"[5, 7, 8]",exact_trivial,0,False,True,False,False,False,116.99913181005502,116.99913181005502,0.0,,,0,,,0.0,slow_edge_dmm
+M_29,0,4,"[0, 2, 3, 4]",position_dmm,16,True,False,False,True,False,156.76958689430725,,,0.0,0.0,2000,0.7578647599266849,0.0,18.490130124613643,slow_position_dmm
+M_29,1,3,"[1, 6, 9]",exact_trivial,0,False,True,False,False,False,260.2683105754224,260.2683105754224,0.0,,,0,,,0.0,slow_position_dmm
+M_29,2,3,"[5, 7, 8]",exact_trivial,0,False,True,False,False,False,116.99913181005502,116.99913181005502,0.0,,,0,,,0.0,slow_position_dmm
+M_29,0,4,"[0, 2, 3, 4]",uniform_random_permutations,0,False,False,False,False,False,156.76958689430725,156.76958689430725,0.0,1.0,0.074,2000,,,0.012877624947577715,slow_random_global
+M_29,1,3,"[1, 6, 9]",exact_trivial,0,False,True,False,False,False,260.2683105754224,260.2683105754224,0.0,,,0,,,0.0,slow_random_global
+M_29,2,3,"[5, 7, 8]",exact_trivial,0,False,True,False,False,False,116.99913181005502,116.99913181005502,0.0,,,0,,,0.0,slow_random_global
+M_29,0,4,"[0, 2, 4, 7]",uniform_random_permutations,0,False,False,False,False,False,183.00595749782184,183.00595749782184,0.0,1.0,0.094,2000,,,0.012770792003720999,random_random_global
+M_29,1,3,"[1, 8, 9]",exact_trivial,0,False,True,False,False,False,220.70060203378745,220.70060203378745,0.0,,,0,,,0.0,random_random_global
+M_29,2,3,"[3, 5, 6]",exact_trivial,0,False,True,False,False,False,153.4947666579983,153.4947666579983,0.0,,,0,,,0.0,random_random_global
+L_11,0,4,"[0, 4, 5, 11]",edge_global,10,False,False,False,True,True,167.53940170208332,167.53940170208332,0.0,0.004,0.0005,2000,0.6751745586455483,0.00259017479916231,0.36949008284136653,slow_edge_global
+L_11,1,3,"[1, 3, 6]",exact_trivial,0,False,True,False,False,False,163.9346055475741,163.9346055475741,0.0,,,0,,,0.0,slow_edge_global
+L_11,2,4,"[2, 7, 12, 13]",edge_global,10,False,False,False,True,True,116.0024161049221,120.78944434400219,4.126662529813441,0.004,0.0,2000,0.6751745586455483,0.0017414358157231266,0.36080287490040064,slow_edge_global
+L_11,3,4,"[8, 9, 10, 14]",edge_global,10,False,False,False,True,True,136.21756407926614,144.6027688971669,6.155744213001291,0.004,0.0,2000,0.6751745586455483,0.0017324400452526363,0.3614648333750665,slow_edge_global
+L_11,0,4,"[0, 4, 5, 11]",edge_dmm,10,True,False,False,True,True,167.53940170208332,167.53940170208332,0.0,0.0015,0.0005,2000,0.6751745586455483,0.0,0.5538944588042796,slow_edge_dmm
+L_11,1,3,"[1, 3, 6]",exact_trivial,0,False,True,False,False,False,163.9346055475741,163.9346055475741,0.0,,,0,,,0.0,slow_edge_dmm
+L_11,2,4,"[2, 7, 12, 13]",edge_dmm,10,True,False,False,True,True,116.0024161049221,120.78944434400219,4.126662529813441,0.0045,0.0,2000,0.6751745586455483,0.0,0.5535002499818802,slow_edge_dmm
+L_11,3,4,"[8, 9, 10, 14]",edge_dmm,10,True,False,False,True,True,136.21756407926614,144.6027688971669,6.155744213001291,0.006,0.0,2000,0.6751745586455483,0.0,0.5519058750942349,slow_edge_dmm
+L_11,0,4,"[0, 4, 5, 11]",position_dmm,16,True,False,False,True,True,167.53940170208332,193.62765474667106,15.571413517984013,0.0005,0.0,2000,0.7578981741888442,0.0,18.7657278329134,slow_position_dmm
+L_11,1,3,"[1, 3, 6]",exact_trivial,0,False,True,False,False,False,163.9346055475741,163.9346055475741,0.0,,,0,,,0.0,slow_position_dmm
+L_11,2,4,"[2, 7, 12, 13]",position_dmm,16,True,False,False,True,True,116.0024161049221,120.78944434400219,4.126662529813441,0.0005,0.0,2000,0.7577694082618806,0.0,18.08217120775953,slow_position_dmm
+L_11,3,4,"[8, 9, 10, 14]",position_dmm,16,True,False,False,True,False,136.21756407926614,,,0.0,0.0,2000,0.7570312505118039,0.0,18.995424624998122,slow_position_dmm
+L_11,0,4,"[0, 4, 5, 11]",uniform_random_permutations,0,False,False,False,False,False,167.53940170208332,167.53940170208332,0.0,1.0,0.0775,2000,,,0.01233499962836504,slow_random_global
+L_11,1,3,"[1, 3, 6]",exact_trivial,0,False,True,False,False,False,163.9346055475741,163.9346055475741,0.0,,,0,,,0.0,slow_random_global
+L_11,2,4,"[2, 7, 12, 13]",uniform_random_permutations,0,False,False,False,False,False,116.0024161049221,116.0024161049221,0.0,1.0,0.0925,2000,,,0.01319108298048377,slow_random_global
+L_11,3,4,"[8, 9, 10, 14]",uniform_random_permutations,0,False,False,False,False,False,136.21756407926614,136.21756407926614,0.0,1.0,0.0845,2000,,,0.013112499844282866,slow_random_global
+L_11,0,4,"[0, 10, 12, 13]",uniform_random_permutations,0,False,False,False,False,False,220.18587255746647,220.18587255746647,0.0,1.0,0.0875,2000,,,0.012530500069260597,random_random_global
+L_11,1,3,"[1, 2, 7]",exact_trivial,0,False,True,False,False,False,206.66540286537122,206.66540286537122,0.0,,,0,,,0.0,random_random_global
+L_11,2,4,"[3, 4, 5, 11]",uniform_random_permutations,0,False,False,False,False,False,209.67537123695934,209.67537123695934,0.0,1.0,0.0825,2000,,,0.013675708789378405,random_random_global
+L_11,3,4,"[6, 8, 9, 14]",uniform_random_permutations,0,False,False,False,False,False,127.41418329317793,127.41418329317793,0.0,1.0,0.0835,2000,,,0.013359041884541512,random_random_global
+L_29,0,3,"[0, 4, 9]",exact_trivial,0,False,True,False,False,False,191.29815290872605,191.29815290872605,0.0,,,0,,,0.0,slow_edge_global
+L_29,1,4,"[1, 6, 10, 12]",edge_global,10,False,False,False,True,True,199.1612778753689,218.9998991062463,9.961083521110957,0.001,0.0,2000,0.6751745586455483,0.0020643696664311728,0.37000474985688925,slow_edge_global
+L_29,2,4,"[2, 3, 7, 14]",edge_global,10,False,False,False,True,True,149.38475225873736,149.38475225873736,0.0,0.0055,0.001,2000,0.6751745586455483,0.001574674426789253,0.3700422910042107,slow_edge_global
+L_29,3,4,"[5, 8, 11, 13]",edge_global,10,False,False,False,True,True,114.64175221331213,134.41190165069395,17.245156372519332,0.0045,0.0,2000,0.6751745586455483,0.001090269700697872,0.37288929196074605,slow_edge_global
+L_29,0,3,"[0, 4, 9]",exact_trivial,0,False,True,False,False,False,191.29815290872605,191.29815290872605,0.0,,,0,,,0.0,slow_edge_dmm
+L_29,1,4,"[1, 6, 10, 12]",edge_dmm,10,True,False,False,True,True,199.1612778753689,239.20083000618527,20.104084768863693,0.0025,0.0,2000,0.6751745586455483,0.0,0.5627453336492181,slow_edge_dmm
+L_29,2,4,"[2, 3, 7, 14]",edge_dmm,10,True,False,False,True,True,149.38475225873736,174.84592728192723,17.04402533606013,0.0025,0.0,2000,0.6751745586455483,0.0,0.5687204580754042,slow_edge_dmm
+L_29,3,4,"[5, 8, 11, 13]",edge_dmm,10,True,False,False,True,True,114.64175221331213,134.41190165069395,17.245156372519332,0.0055,0.0,2000,0.6751745586455483,0.0,0.5554728750139475,slow_edge_dmm
+L_29,0,3,"[0, 4, 9]",exact_trivial,0,False,True,False,False,False,191.29815290872605,191.29815290872605,0.0,,,0,,,0.0,slow_position_dmm
+L_29,1,4,"[1, 6, 10, 12]",position_dmm,16,True,False,False,True,False,199.1612778753689,,,0.0,0.0,2000,0.7573076015688978,0.0,18.71847654134035,slow_position_dmm
+L_29,2,4,"[2, 3, 7, 14]",position_dmm,16,True,False,False,True,False,149.38475225873736,,,0.0,0.0,2000,0.7565639157729689,0.0,18.454626750200987,slow_position_dmm
+L_29,3,4,"[5, 8, 11, 13]",position_dmm,16,True,False,False,True,True,114.64175221331213,141.07130446384318,23.054037242342563,0.0005,0.0,2000,0.7568201050630111,0.0,19.154959291685373,slow_position_dmm
+L_29,0,3,"[0, 4, 9]",exact_trivial,0,False,True,False,False,False,191.29815290872605,191.29815290872605,0.0,,,0,,,0.0,slow_random_global
+L_29,1,4,"[1, 6, 10, 12]",uniform_random_permutations,0,False,False,False,False,False,199.1612778753689,199.1612778753689,0.0,1.0,0.094,2000,,,0.012729458045214415,slow_random_global
+L_29,2,4,"[2, 3, 7, 14]",uniform_random_permutations,0,False,False,False,False,False,149.38475225873736,149.38475225873736,0.0,1.0,0.075,2000,,,0.014154084026813507,slow_random_global
+L_29,3,4,"[5, 8, 11, 13]",uniform_random_permutations,0,False,False,False,False,False,114.64175221331213,114.64175221331213,0.0,1.0,0.082,2000,,,0.012848374899476767,slow_random_global
+L_29,0,4,"[0, 3, 9, 13]",uniform_random_permutations,0,False,False,False,False,False,180.1804655243804,180.1804655243804,0.0,1.0,0.084,2000,,,0.012815834023058414,random_random_global
+L_29,1,3,"[1, 4, 14]",exact_trivial,0,False,True,False,False,False,127.72352548296647,127.72352548296647,0.0,,,0,,,0.0,random_random_global
+L_29,2,5,"[2, 5, 6, 8, 12]",classical_size_fallback,0,False,False,True,False,False,272.5740015798478,272.5740015798478,0.0,,,0,,,0.0,random_random_global
+L_29,3,3,"[7, 10, 11]",exact_trivial,0,False,True,False,False,False,120.87891890821754,120.87891890821754,0.0,,,0,,,0.0,random_random_global
+S_heterogeneous_11,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,135.5165313203276,135.5165313203276,0.0,,,0,,,0.0,slow_edge_global
+S_heterogeneous_11,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,158.9831540057483,158.9831540057483,0.0,,,0,,,0.0,slow_edge_global
+S_heterogeneous_11,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,135.5165313203276,135.5165313203276,0.0,,,0,,,0.0,slow_edge_dmm
+S_heterogeneous_11,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,158.9831540057483,158.9831540057483,0.0,,,0,,,0.0,slow_edge_dmm
+S_heterogeneous_11,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,135.5165313203276,135.5165313203276,0.0,,,0,,,0.0,slow_position_dmm
+S_heterogeneous_11,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,158.9831540057483,158.9831540057483,0.0,,,0,,,0.0,slow_position_dmm
+S_heterogeneous_11,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,135.5165313203276,135.5165313203276,0.0,,,0,,,0.0,slow_random_global
+S_heterogeneous_11,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,158.9831540057483,158.9831540057483,0.0,,,0,,,0.0,slow_random_global
+S_heterogeneous_11,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,135.5165313203276,135.5165313203276,0.0,,,0,,,0.0,random_random_global
+S_heterogeneous_11,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,158.9831540057483,158.9831540057483,0.0,,,0,,,0.0,random_random_global
+S_heterogeneous_29,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,154.79509501673772,154.79509501673772,0.0,,,0,,,0.0,slow_edge_global
+S_heterogeneous_29,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,56.580764207063154,56.580764207063154,0.0,,,0,,,0.0,slow_edge_global
+S_heterogeneous_29,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,154.79509501673772,154.79509501673772,0.0,,,0,,,0.0,slow_edge_dmm
+S_heterogeneous_29,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,56.580764207063154,56.580764207063154,0.0,,,0,,,0.0,slow_edge_dmm
+S_heterogeneous_29,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,154.79509501673772,154.79509501673772,0.0,,,0,,,0.0,slow_position_dmm
+S_heterogeneous_29,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,56.580764207063154,56.580764207063154,0.0,,,0,,,0.0,slow_position_dmm
+S_heterogeneous_29,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,154.79509501673772,154.79509501673772,0.0,,,0,,,0.0,slow_random_global
+S_heterogeneous_29,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,56.580764207063154,56.580764207063154,0.0,,,0,,,0.0,slow_random_global
+S_heterogeneous_29,0,2,"[0, 2]",exact_trivial,0,False,True,False,False,False,154.79509501673772,154.79509501673772,0.0,,,0,,,0.0,random_random_global
+S_heterogeneous_29,1,2,"[1, 3]",exact_trivial,0,False,True,False,False,False,56.580764207063154,56.580764207063154,0.0,,,0,,,0.0,random_random_global
+M_heterogeneous_29,0,4,"[0, 6, 7, 9]",edge_global,10,False,False,False,True,True,295.57473214851996,295.57473214851996,0.0,0.0035,0.0005,2000,0.6751745586455483,0.002661698062254092,0.37421041587367654,slow_edge_global
+M_heterogeneous_29,1,3,"[1, 5, 8]",exact_trivial,0,False,True,False,False,False,110.87562239674632,110.87562239674632,0.0,,,0,,,0.0,slow_edge_global
+M_heterogeneous_29,2,3,"[2, 3, 4]",exact_trivial,0,False,True,False,False,False,139.19917776381362,139.19917776381362,0.0,,,0,,,0.0,slow_edge_global
+M_heterogeneous_29,0,4,"[0, 6, 7, 9]",edge_dmm,10,True,False,False,True,True,295.57473214851996,295.57473214851996,0.0,0.0035,0.001,2000,0.6751745586455483,0.0,0.5769137921743095,slow_edge_dmm
+M_heterogeneous_29,1,3,"[1, 5, 8]",exact_trivial,0,False,True,False,False,False,110.87562239674632,110.87562239674632,0.0,,,0,,,0.0,slow_edge_dmm
+M_heterogeneous_29,2,3,"[2, 3, 4]",exact_trivial,0,False,True,False,False,False,139.19917776381362,139.19917776381362,0.0,,,0,,,0.0,slow_edge_dmm
+M_heterogeneous_29,0,4,"[0, 6, 7, 9]",position_dmm,16,True,False,False,True,True,295.57473214851996,301.1563735932597,1.888402775219311,0.001,0.0,2000,0.7491726062196589,0.0,18.560293042100966,slow_position_dmm
+M_heterogeneous_29,1,3,"[1, 5, 8]",exact_trivial,0,False,True,False,False,False,110.87562239674632,110.87562239674632,0.0,,,0,,,0.0,slow_position_dmm
+M_heterogeneous_29,2,3,"[2, 3, 4]",exact_trivial,0,False,True,False,False,False,139.19917776381362,139.19917776381362,0.0,,,0,,,0.0,slow_position_dmm
+M_heterogeneous_29,0,4,"[0, 6, 7, 9]",uniform_random_permutations,0,False,False,False,False,False,295.57473214851996,295.57473214851996,0.0,1.0,0.074,2000,,,0.01285474980250001,slow_random_global
+M_heterogeneous_29,1,3,"[1, 5, 8]",exact_trivial,0,False,True,False,False,False,110.87562239674632,110.87562239674632,0.0,,,0,,,0.0,slow_random_global
+M_heterogeneous_29,2,3,"[2, 3, 4]",exact_trivial,0,False,True,False,False,False,139.19917776381362,139.19917776381362,0.0,,,0,,,0.0,slow_random_global
+M_heterogeneous_29,0,4,"[0, 3, 4, 7]",uniform_random_permutations,0,False,False,False,False,False,174.57733469372687,174.57733469372687,0.0,1.0,0.084,2000,,,0.01282037515193224,random_random_global
+M_heterogeneous_29,1,3,"[1, 5, 8]",exact_trivial,0,False,True,False,False,False,110.87562239674632,110.87562239674632,0.0,,,0,,,0.0,random_random_global
+M_heterogeneous_29,2,3,"[2, 6, 9]",exact_trivial,0,False,True,False,False,False,310.45288240786374,310.45288240786374,0.0,,,0,,,0.0,random_random_global
+L_heterogeneous_11,0,4,"[0, 7, 8, 13]",edge_global,10,False,False,False,True,True,145.22680200464293,145.22680200464293,0.0,0.0045,0.001,2000,0.6751745586455483,0.001822286947651208,0.3662627497687936,slow_edge_global
+L_heterogeneous_11,1,3,"[1, 4, 6]",exact_trivial,0,False,True,False,False,False,164.98685925728685,164.98685925728685,0.0,,,0,,,0.0,slow_edge_global
+L_heterogeneous_11,2,4,"[2, 3, 9, 12]",edge_global,10,False,False,False,True,True,254.60191729929312,259.2283026030915,1.8171054455807134,0.005,0.0,2000,0.6751745586455483,0.002463597907776685,0.3925803331658244,slow_edge_global
+L_heterogeneous_11,3,4,"[5, 10, 11, 14]",edge_global,10,False,False,False,True,True,146.2769904802227,146.2769904802227,0.0,0.005,0.0005,2000,0.6751745586455483,0.002638675465207042,0.3716089157387614,slow_edge_global
+L_heterogeneous_11,0,4,"[0, 7, 8, 13]",edge_dmm,10,True,False,False,True,True,145.22680200464293,145.22680200464293,0.0,0.0045,0.0005,2000,0.6751745586455483,0.0,0.580478582996875,slow_edge_dmm
+L_heterogeneous_11,1,3,"[1, 4, 6]",exact_trivial,0,False,True,False,False,False,164.98685925728685,164.98685925728685,0.0,,,0,,,0.0,slow_edge_dmm
+L_heterogeneous_11,2,4,"[2, 3, 9, 12]",edge_dmm,10,True,False,False,True,True,254.60191729929312,254.9524098492809,0.13766296566251057,0.003,0.0,2000,0.6751745586455483,0.0,0.565659707877785,slow_edge_dmm
+L_heterogeneous_11,3,4,"[5, 10, 11, 14]",edge_dmm,10,True,False,False,True,True,146.2769904802227,158.6323076927133,8.446521337312518,0.0005,0.0,2000,0.6751745586455483,0.0,0.5603642500936985,slow_edge_dmm
+L_heterogeneous_11,0,4,"[0, 7, 8, 13]",position_dmm,16,True,False,False,True,True,145.22680200464293,145.22680200464293,0.0,0.001,0.0005,2000,0.7563296194267719,0.0,19.130337584298104,slow_position_dmm
+L_heterogeneous_11,1,3,"[1, 4, 6]",exact_trivial,0,False,True,False,False,False,164.98685925728685,164.98685925728685,0.0,,,0,,,0.0,slow_position_dmm
+L_heterogeneous_11,2,4,"[2, 3, 9, 12]",position_dmm,16,True,False,False,True,True,254.60191729929312,289.3728159893752,13.656966553479544,0.0005,0.0,2000,0.7569849707566437,0.0,19.05631549982354,slow_position_dmm
+L_heterogeneous_11,3,4,"[5, 10, 11, 14]",position_dmm,16,True,False,False,True,False,146.2769904802227,,,0.0,0.0,2000,0.7579258955368465,0.0,18.365676583256572,slow_position_dmm
+L_heterogeneous_11,0,4,"[0, 7, 8, 13]",uniform_random_permutations,0,False,False,False,False,False,145.22680200464293,145.22680200464293,0.0,1.0,0.0885,2000,,,0.012579166330397129,slow_random_global
+L_heterogeneous_11,1,3,"[1, 4, 6]",exact_trivial,0,False,True,False,False,False,164.98685925728685,164.98685925728685,0.0,,,0,,,0.0,slow_random_global
+L_heterogeneous_11,2,4,"[2, 3, 9, 12]",uniform_random_permutations,0,False,False,False,False,False,254.60191729929312,254.60191729929312,0.0,1.0,0.0925,2000,,,0.012867958284914494,slow_random_global
+L_heterogeneous_11,3,4,"[5, 10, 11, 14]",uniform_random_permutations,0,False,False,False,False,False,146.2769904802227,146.2769904802227,0.0,1.0,0.0885,2000,,,0.01237425021827221,slow_random_global
+L_heterogeneous_11,0,4,"[0, 5, 10, 12]",uniform_random_permutations,0,False,False,False,False,False,190.5625397574067,190.5625397574067,0.0,1.0,0.0875,2000,,,0.012389250099658966,random_random_global
+L_heterogeneous_11,1,4,"[1, 3, 4, 7]",uniform_random_permutations,0,False,False,False,False,False,281.6720520653981,281.6720520653981,0.0,1.0,0.0825,2000,,,0.013093000277876854,random_random_global
+L_heterogeneous_11,2,3,"[2, 11, 14]",exact_trivial,0,False,True,False,False,False,215.21430358517978,215.21430358517978,0.0,,,0,,,0.0,random_random_global
+L_heterogeneous_11,3,4,"[6, 8, 9, 13]",uniform_random_permutations,0,False,False,False,False,False,166.69476632942616,166.69476632942616,0.0,1.0,0.077,2000,,,0.012749040964990854,random_random_global
+L_heterogeneous_29,0,4,"[0, 3, 9, 13]",edge_global,10,False,False,False,True,True,180.1804655243804,204.56248832125306,13.532001222171065,0.004,0.0,2000,0.6751745586455483,0.0022207310219333194,0.3618581658229232,slow_edge_global
+L_heterogeneous_29,1,3,"[1, 5, 11]",exact_trivial,0,False,True,False,False,False,100.86434866388994,100.86434866388994,0.0,,,0,,,0.0,slow_edge_global
+L_heterogeneous_29,2,4,"[2, 4, 7, 14]",edge_global,10,False,False,False,True,True,167.55902274771535,180.60811031408008,7.7877558321714835,0.003,0.0,2000,0.6751745586455483,0.0017034577427098123,0.3637779578566551,slow_edge_global
+L_heterogeneous_29,3,4,"[6, 8, 10, 12]",edge_global,10,False,False,False,True,True,182.09626588642595,202.7956676738535,11.36728514814127,0.007,0.0,2000,0.6751745586455483,0.0018614088523604062,0.36080333264544606,slow_edge_global
+L_heterogeneous_29,0,4,"[0, 3, 9, 13]",edge_dmm,10,True,False,False,True,True,180.1804655243804,194.06075087869084,7.703546171841968,0.0045,0.0,2000,0.6751745586455483,0.0,0.55557533307001,slow_edge_dmm
+L_heterogeneous_29,1,3,"[1, 5, 11]",exact_trivial,0,False,True,False,False,False,100.86434866388994,100.86434866388994,0.0,,,0,,,0.0,slow_edge_dmm
+L_heterogeneous_29,2,4,"[2, 4, 7, 14]",edge_dmm,10,True,False,False,True,True,167.55902274771535,167.55902274771535,0.0,0.0035,0.0005,2000,0.6751745586455483,0.0,0.5588906253688037,slow_edge_dmm
+L_heterogeneous_29,3,4,"[6, 8, 10, 12]",edge_dmm,10,True,False,False,True,True,182.09626588642595,238.13334448478332,30.773326583922312,0.0035,0.0,2000,0.6751745586455483,0.0,0.5567819168791175,slow_edge_dmm
+L_heterogeneous_29,0,4,"[0, 3, 9, 13]",position_dmm,16,True,False,False,True,True,180.1804655243804,194.06075087869084,7.703546171841968,0.0005,0.0,2000,0.7527694868183805,0.0,18.023903749883175,slow_position_dmm
+L_heterogeneous_29,1,3,"[1, 5, 11]",exact_trivial,0,False,True,False,False,False,100.86434866388994,100.86434866388994,0.0,,,0,,,0.0,slow_position_dmm
+L_heterogeneous_29,2,4,"[2, 4, 7, 14]",position_dmm,16,True,False,False,True,True,167.55902274771535,181.443418213367,8.286271451079452,0.0005,0.0,2000,0.7573817237842959,0.0,18.393606833182275,slow_position_dmm
+L_heterogeneous_29,3,4,"[6, 8, 10, 12]",position_dmm,16,True,False,False,True,False,182.09626588642595,,,0.0,0.0,2000,0.7577211452666274,0.0,18.07195279095322,slow_position_dmm
+L_heterogeneous_29,0,4,"[0, 3, 9, 13]",uniform_random_permutations,0,False,False,False,False,False,180.1804655243804,180.1804655243804,0.0,1.0,0.084,2000,,,0.012846291996538639,slow_random_global
+L_heterogeneous_29,1,3,"[1, 5, 11]",exact_trivial,0,False,True,False,False,False,100.86434866388994,100.86434866388994,0.0,,,0,,,0.0,slow_random_global
+L_heterogeneous_29,2,4,"[2, 4, 7, 14]",uniform_random_permutations,0,False,False,False,False,False,167.55902274771535,167.55902274771535,0.0,1.0,0.084,2000,,,0.01325391698628664,slow_random_global
+L_heterogeneous_29,3,4,"[6, 8, 10, 12]",uniform_random_permutations,0,False,False,False,False,False,182.09626588642595,182.09626588642595,0.0,1.0,0.088,2000,,,0.012783249840140343,slow_random_global
+L_heterogeneous_29,0,4,"[0, 9, 11, 13]",uniform_random_permutations,0,False,False,False,False,False,200.40296706945003,200.40296706945003,0.0,1.0,0.092,2000,,,0.013521874789148569,random_random_global
+L_heterogeneous_29,1,4,"[1, 6, 10, 14]",uniform_random_permutations,0,False,False,False,False,False,221.46408186315574,221.46408186315574,0.0,1.0,0.0845,2000,,,0.013034749776124954,random_random_global
+L_heterogeneous_29,2,3,"[2, 3, 4]",exact_trivial,0,False,True,False,False,False,139.19917776381362,139.19917776381362,0.0,,,0,,,0.0,random_random_global
+L_heterogeneous_29,3,4,"[5, 7, 8, 12]",uniform_random_permutations,0,False,False,False,False,False,175.28195316514342,175.28195316514342,0.0,1.0,0.088,2000,,,0.013585415668785572,random_random_global

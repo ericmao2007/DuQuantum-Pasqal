@@ -1,0 +1,27 @@
+{
+  "tiers": [
+    "S",
+    "M",
+    "L"
+  ],
+  "seeds": [
+    11,
+    29
+  ],
+  "families": [
+    "uniform",
+    "heterogeneous"
+  ],
+  "attempts": 32,
+  "shots": 2000,
+  "routing": [
+    "edge_global",
+    "edge_dmm",
+    "position_dmm",
+    "random_global"
+  ],
+  "routing_limit": 4,
+  "noise": false,
+  "modulation": false,
+  "clustering_global_only": true
+}

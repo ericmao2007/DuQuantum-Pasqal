@@ -1,6 +1,8 @@
-# Model and accounting (Track A)
+# Model and accounting (original Track A baseline)
 
 ## Scope
+
+This document records the original Track A formulation. The completed Track B extension and heterogeneous-demand input support are documented in `TRACK_B_MODEL.md`; equal-demand statements below describe the original baseline family.
 
 This is a working Track A research baseline, not a claim of quantum advantage or a completed Track B submission. It uses legal global-detuning Pulser sequences, exact local state-vector emulation of at most eight atoms, sequential reuse, and explicit rejection of infeasible measurements. It deliberately benchmarks equal-demand instances. All customer coordinates are independent uniform samples in [0,100]^2; the depot is fixed at (50,50). S/M/L use demands 3/5/6 respectively, within the prescribed ranges. The generator does not cover heterogeneous-demand CVRP.
 
@@ -74,7 +76,7 @@ Uniform random bits use the same window, look-ahead, attempt budget, and rejecti
 
 ## Exact references
 
-Enumerate every capacity-feasible customer subset. Compute each subset's depot tour by exhaustive permutations with reversal symmetry removed (largest possible subset is five customers in these instances). Solve exact set partitioning by dynamic programming, anchoring the smallest remaining customer to avoid vehicle-label duplication and allowing fewer than K nonempty groups. Use separate subset costs for model and CVRP optima. Count all optimal unlabeled partitions. These expensive offline computations are evaluation only.
+Enumerate every capacity-feasible customer subset. Compute each subset's depot tour exactly with Held-Karp subset dynamic programming (the historical Track A run used exhaustive permutations). Solve exact set partitioning by dynamic programming, anchoring the smallest remaining customer to avoid vehicle-label duplication and allowing fewer than K nonempty groups. Use separate subset costs for model and CVRP optima. Count all optimal unlabeled partitions. These expensive offline computations are evaluation only.
 
 On S, independently enumerate all K^N assignments and cross-check both optima. Also solve both constrained set-partition models with the direct CPLEX Python API (30-second limit, one thread, zero relative MIP gap); assert agreement with exhaustive optima. CPLEX reference status is recorded separately. Larger references are proven by exhaustive subset/partition DP, not weak heuristics.
 

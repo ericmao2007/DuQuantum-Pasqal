@@ -1,0 +1,239 @@
+{
+  "metrics": {
+    "instance": "L_heterogeneous_29",
+    "method": "random_random_global",
+    "seed": 20029,
+    "track": "B",
+    "clustering_method": "random",
+    "model_gap_percent": 24.762042962299713,
+    "clustering_feasibility_rate": 0.0625,
+    "model_reference_probability": 0.0,
+    "cvrp_gap_percent": 29.471891949031214,
+    "routing_gap_percent": null,
+    "end_to_end_gap_percent": 29.471891949031214,
+    "decomposition_gap_percent": 1.8434783013305949,
+    "decomposition_loss": 10.484452427199017,
+    "clustering_loss": 157.13165070574178,
+    "routing_loss": 0.0,
+    "end_to_end_cost": 736.3481798615628,
+    "selected_clustering_exact_cost": 736.3481798615628,
+    "pipeline_feasible": true,
+    "trivial_clusters": 1,
+    "classically_routed_nontrivial_clusters": 0,
+    "nontrivial_clusters": 3,
+    "quantum_routed_nontrivial_clusters": 0,
+    "quantum_nontrivial_fraction": 0.0,
+    "quantum_route_raw_joint_reference_probability": null,
+    "routing_raw_feasibility_rate": null,
+    "reference_epsilon_percent": 1e-06,
+    "reference_status": "proven optimum: exhaustive feasible subsets, exact partition DP",
+    "routing_peak_atoms": 0,
+    "peak_atoms": 8,
+    "clustering_backend_calls": 0,
+    "clustering_backend_shots": 0,
+    "routing_backend_calls": 0,
+    "routing_backend_shots": 0,
+    "dmm_routing": false,
+    "global_detuning_clustering": true,
+    "noise": false,
+    "modulation": false,
+    "backend": "QutipBackendV2; state-vector without bond truncation",
+    "routing_max_customers": 4,
+    "routing_shots_per_cluster": 2000,
+    "joint_probability_semantics": "product of raw conditional routing hit rates; excludes trivial and fallback; conditional on selected clustering",
+    "routing_embedding_error_mean": null,
+    "routing_linear_error_max": null,
+    "clustering_embedding_error_mean": null,
+    "total_demand": 101,
+    "load_ratio": 0.8416666666666667,
+    "largest_demand_ratio": 0.26666666666666666,
+    "conditional_raw_routing_feasibility": null,
+    "conditional_end_to_end_reference_probability": 0.0,
+    "conditional_probability_note": "raw independent route draws conditional on the fixed model-selected clustering; not unconditional CVRP or best-of-batch success",
+    "clustering_elapsed_seconds": 0.0008504581637680531,
+    "routing_elapsed_seconds": 0.040142040234059095,
+    "reference_evaluation_seconds": 0.2499477919191122,
+    "reference_timing_note": "offline reference evaluation, not online quantum decoding"
+  },
+  "routes": [
+    [
+      11,
+      0,
+      9,
+      13
+    ],
+    [
+      6,
+      10,
+      1,
+      14
+    ],
+    [
+      3,
+      2,
+      4
+    ],
+    [
+      7,
+      8,
+      5,
+      12
+    ]
+  ],
+  "clustering": {
+    "attempt": 30,
+    "feasible": true,
+    "groups": [
+      [
+        0,
+        9,
+        11,
+        13
+      ],
+      [
+        1,
+        6,
+        10,
+        14
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        5,
+        7,
+        8,
+        12
+      ]
+    ],
+    "loads": [
+      25,
+      21,
+      28,
+      27
+    ],
+    "model_cost": 16.20414592073844,
+    "routed_cost": 736.3481798615628,
+    "routes": [
+      [
+        13,
+        9,
+        0,
+        11
+      ],
+      [
+        14,
+        1,
+        10,
+        6
+      ],
+      [
+        3,
+        2,
+        4
+      ],
+      [
+        12,
+        5,
+        8,
+        7
+      ]
+    ]
+  },
+  "clusters": [
+    {
+      "instance": "L_heterogeneous_29",
+      "cluster": 0,
+      "customers": 4,
+      "group": "[0, 9, 11, 13]",
+      "routing_method": "uniform_random_permutations",
+      "atoms": 0,
+      "dmm": false,
+      "trivial": false,
+      "classically_routed": false,
+      "quantum_attempted": false,
+      "quantum_success": false,
+      "exact_tsp": 200.40296706945003,
+      "tour_length": 200.40296706945003,
+      "gap_percent": 0.0,
+      "raw_feasibility_rate": 1.0,
+      "raw_reference_probability": 0.092,
+      "shots": 2000,
+      "embedding_error": null,
+      "linear_error": null,
+      "elapsed_seconds": 0.013521874789148569,
+      "pipeline_method": "random_random_global"
+    },
+    {
+      "instance": "L_heterogeneous_29",
+      "cluster": 1,
+      "customers": 4,
+      "group": "[1, 6, 10, 14]",
+      "routing_method": "uniform_random_permutations",
+      "atoms": 0,
+      "dmm": false,
+      "trivial": false,
+      "classically_routed": false,
+      "quantum_attempted": false,
+      "quantum_success": false,
+      "exact_tsp": 221.46408186315574,
+      "tour_length": 221.46408186315574,
+      "gap_percent": 0.0,
+      "raw_feasibility_rate": 1.0,
+      "raw_reference_probability": 0.0845,
+      "shots": 2000,
+      "embedding_error": null,
+      "linear_error": null,
+      "elapsed_seconds": 0.013034749776124954,
+      "pipeline_method": "random_random_global"
+    },
+    {
+      "instance": "L_heterogeneous_29",
+      "cluster": 2,
+      "customers": 3,
+      "group": "[2, 3, 4]",
+      "routing_method": "exact_trivial",
+      "atoms": 0,
+      "dmm": false,
+      "trivial": true,
+      "classically_routed": false,
+      "quantum_attempted": false,
+      "quantum_success": false,
+      "exact_tsp": 139.19917776381362,
+      "tour_length": 139.19917776381362,
+      "gap_percent": 0.0,
+      "raw_feasibility_rate": null,
+      "raw_reference_probability": null,
+      "shots": 0,
+      "embedding_error": null,
+      "linear_error": null,
+      "elapsed_seconds": 0.0,
+      "pipeline_method": "random_random_global"
+    },
+    {
+      "instance": "L_heterogeneous_29",
+      "cluster": 3,
+      "customers": 4,
+      "group": "[5, 7, 8, 12]",
+      "routing_method": "uniform_random_permutations",
+      "atoms": 0,
+      "dmm": false,
+      "trivial": false,
+      "classically_routed": false,
+      "quantum_attempted": false,
+      "quantum_success": false,
+      "exact_tsp": 175.28195316514342,
+      "tour_length": 175.28195316514342,
+      "gap_percent": 0.0,
+      "raw_feasibility_rate": 1.0,
+      "raw_reference_probability": 0.088,
+      "shots": 2000,
+      "embedding_error": null,
+      "linear_error": null,
+      "elapsed_seconds": 0.013585415668785572,
+      "pipeline_method": "random_random_global"
+    }
+  ]
+}

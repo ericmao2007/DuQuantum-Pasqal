@@ -1,0 +1,194 @@
+{
+  "metrics": {
+    "instance": "M_11",
+    "method": "slow_edge_global",
+    "seed": 20011,
+    "track": "B",
+    "clustering_method": "slow",
+    "model_gap_percent": 8.999748744513747,
+    "clustering_feasibility_rate": 0.65625,
+    "model_reference_probability": 0.0,
+    "cvrp_gap_percent": 25.516111938648155,
+    "routing_gap_percent": 1.075666361546368,
+    "end_to_end_gap_percent": 25.84400751619418,
+    "decomposition_gap_percent": 0.0,
+    "decomposition_loss": 0.0,
+    "clustering_loss": 100.33155523229698,
+    "routing_loss": 1.2893137217804451,
+    "end_to_end_cost": 494.8295030654881,
+    "selected_clustering_exact_cost": 493.54018934370765,
+    "pipeline_feasible": true,
+    "trivial_clusters": 2,
+    "classically_routed_nontrivial_clusters": 0,
+    "nontrivial_clusters": 1,
+    "quantum_routed_nontrivial_clusters": 1,
+    "quantum_nontrivial_fraction": 1.0,
+    "quantum_route_raw_joint_reference_probability": 0.0,
+    "routing_raw_feasibility_rate": 0.004,
+    "reference_epsilon_percent": 1e-06,
+    "reference_status": "proven optimum: exhaustive feasible subsets, exact partition DP",
+    "routing_peak_atoms": 10,
+    "peak_atoms": 10,
+    "clustering_backend_calls": 24,
+    "clustering_backend_shots": 24000,
+    "routing_backend_calls": 1,
+    "routing_backend_shots": 2000,
+    "dmm_routing": false,
+    "global_detuning_clustering": true,
+    "noise": false,
+    "modulation": false,
+    "backend": "QutipBackendV2; state-vector without bond truncation",
+    "routing_max_customers": 4,
+    "routing_shots_per_cluster": 2000,
+    "joint_probability_semantics": "product of raw conditional routing hit rates; excludes trivial and fallback; conditional on selected clustering",
+    "routing_embedding_error_mean": 0.6751745586455483,
+    "routing_linear_error_max": 0.0012564638495116552,
+    "clustering_embedding_error_mean": 0.6232222976777811,
+    "total_demand": 50,
+    "load_ratio": 0.8333333333333334,
+    "largest_demand_ratio": 0.25,
+    "conditional_raw_routing_feasibility": 0.004,
+    "conditional_end_to_end_reference_probability": 0.0,
+    "conditional_probability_note": "raw independent route draws conditional on the fixed model-selected clustering; not unconditional CVRP or best-of-batch success",
+    "clustering_elapsed_seconds": 2.6842600842937827,
+    "routing_elapsed_seconds": 0.36035295901820064,
+    "reference_evaluation_seconds": 0.005599790718406439,
+    "reference_timing_note": "offline reference evaluation, not online quantum decoding"
+  },
+  "routes": [
+    [
+      7,
+      0,
+      3
+    ],
+    [
+      2,
+      5,
+      1
+    ],
+    [
+      6,
+      9,
+      4,
+      8
+    ]
+  ],
+  "clustering": {
+    "attempt": 31,
+    "feasible": true,
+    "groups": [
+      [
+        0,
+        3,
+        7
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        4,
+        6,
+        8,
+        9
+      ]
+    ],
+    "loads": [
+      20,
+      15,
+      15
+    ],
+    "model_cost": 8.593114404922257,
+    "routed_cost": 493.54018934370765,
+    "routes": [
+      [
+        7,
+        0,
+        3
+      ],
+      [
+        2,
+        5,
+        1
+      ],
+      [
+        6,
+        4,
+        9,
+        8
+      ]
+    ]
+  },
+  "clusters": [
+    {
+      "instance": "M_11",
+      "cluster": 0,
+      "customers": 3,
+      "group": "[0, 3, 7]",
+      "routing_method": "exact_trivial",
+      "atoms": 0,
+      "dmm": false,
+      "trivial": true,
+      "classically_routed": false,
+      "quantum_attempted": false,
+      "quantum_success": false,
+      "exact_tsp": 169.27071185496763,
+      "tour_length": 169.27071185496763,
+      "gap_percent": 0.0,
+      "raw_feasibility_rate": null,
+      "raw_reference_probability": null,
+      "shots": 0,
+      "embedding_error": null,
+      "linear_error": null,
+      "elapsed_seconds": 0.0,
+      "pipeline_method": "slow_edge_global"
+    },
+    {
+      "instance": "M_11",
+      "cluster": 1,
+      "customers": 3,
+      "group": "[1, 2, 5]",
+      "routing_method": "exact_trivial",
+      "atoms": 0,
+      "dmm": false,
+      "trivial": true,
+      "classically_routed": false,
+      "quantum_attempted": false,
+      "quantum_success": false,
+      "exact_tsp": 204.40761623959605,
+      "tour_length": 204.40761623959605,
+      "gap_percent": 0.0,
+      "raw_feasibility_rate": null,
+      "raw_reference_probability": null,
+      "shots": 0,
+      "embedding_error": null,
+      "linear_error": null,
+      "elapsed_seconds": 0.0,
+      "pipeline_method": "slow_edge_global"
+    },
+    {
+      "instance": "M_11",
+      "cluster": 2,
+      "customers": 4,
+      "group": "[4, 6, 8, 9]",
+      "routing_method": "edge_global",
+      "atoms": 10,
+      "dmm": false,
+      "trivial": false,
+      "classically_routed": false,
+      "quantum_attempted": true,
+      "quantum_success": true,
+      "exact_tsp": 119.86186124914398,
+      "tour_length": 121.15117497092442,
+      "gap_percent": 1.075666361546368,
+      "raw_feasibility_rate": 0.004,
+      "raw_reference_probability": 0.0,
+      "shots": 2000,
+      "embedding_error": 0.6751745586455483,
+      "linear_error": 0.0012564638495116552,
+      "elapsed_seconds": 0.36035295901820064,
+      "pipeline_method": "slow_edge_global"
+    }
+  ]
+}

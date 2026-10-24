@@ -20,15 +20,36 @@ def generate(tier, seed):
     return instance
 
 
+def generate_heterogeneous(tier, seed):
+    """Generate varied demands first, then reduce certificate loads if necessary."""
+    instance = generate(tier, seed)
+    rng = np.random.default_rng(seed + 700)
+    upper = {'S':4, 'M':8, 'L':10}[tier]
+    base = TIERS[tier][3]
+    low = max(1, base-1)
+    instance['demands'] = rng.integers(low, min(upper,base+2)+1, len(instance['customers'])).tolist()
+    for vehicle in range(instance['vehicles']):
+        ids = [i for i,v in enumerate(instance['certificate']) if v==vehicle]
+        while sum(instance['demands'][i] for i in ids)>instance['capacity']:
+            i = max(ids,key=lambda i:instance['demands'][i])
+            instance['demands'][i]-=1
+    instance['id'] = f'{tier}_heterogeneous_{seed}'
+    instance['generator'] = 'seeded varied integer demands; reduce cyclic certificate loads until capacity fits'
+    validate(instance,instance['certificate'])
+    return instance
+
+
 def validate(instance, assignment):
     n, k, q = len(instance['customers']), instance['vehicles'], instance['capacity']
     if len(assignment) != n or any(type(v) not in (int, np.int64) or not 0 <= v < k for v in assignment):
         raise ValueError('Each customer must have exactly one valid vehicle label')
+    if len(instance['demands']) != n or any(not isinstance(d, (int, np.integer)) for d in instance['demands']):
+        raise ValueError('One integer demand is required per customer')
     loads = [sum(d for d, v in zip(instance['demands'], assignment) if v == j) for j in range(k)]
     if any(load > q for load in loads):
         raise ValueError('Capacity violation')
     coords = np.array([instance['depot']] + instance['customers'])
-    if np.any(coords < 0) or np.any(coords > 100):
+    if coords.shape != (n+1,2) or not np.all(np.isfinite(coords)) or np.any(coords < 0) or np.any(coords > 100):
         raise ValueError('Coordinates outside the prescribed square')
     ranges = {'S': 4, 'M': 8, 'L': 10}
     if any(not 1 <= d <= min(q, ranges[instance['tier']]) for d in instance['demands']):
@@ -63,7 +84,7 @@ def clustering_cost(groups, pair):
 
 
 def references(instance):
-    """Exact set-partition DP, with exhaustive TSP on every feasible subset.
+    """Exact set-partition DP, with Held-Karp TSP on every feasible subset.
 
     Anchoring the smallest remaining customer removes vehicle-label symmetry.
     Optimal counts are counts of unlabeled clusterings, not tour orientations.
@@ -73,6 +94,7 @@ def references(instance):
     points = np.array([instance['depot']] + instance['customers'])
     distance = np.linalg.norm(points[:, None] - points[None, :], axis=-1)
     subsets, tour_cost, tour_order, model = {}, {}, {}, {}
+    path_dp, predecessor = {}, {}
     for size in range(1, n + 1):
         if size * min(instance['demands']) > q:
             break
@@ -81,16 +103,25 @@ def references(instance):
                 continue
             mask = sum(1 << i for i in group)
             subsets[mask] = group
-            best, order = float('inf'), None
-            for route in permutations(group):
-                # Reversed tours have the same cost; retain only one orientation.
-                if size > 1 and route[0] > route[-1]:
-                    continue
-                path = (0,) + tuple(i + 1 for i in route) + (0,)
-                cost = sum(distance[a, b] for a, b in zip(path, path[1:]))
-                if cost < best - 1e-10:
-                    best, order = float(cost), route
-            tour_cost[mask], tour_order[mask] = best, order
+            # Held-Karp evaluates all feasible subset tours without factorial enumeration.
+            for last in group:
+                previous_mask = mask ^ (1 << last)
+                if not previous_mask:
+                    path_dp[mask,last] = float(distance[0,last+1])
+                    predecessor[mask,last] = None
+                else:
+                    value, previous = min((path_dp[previous_mask,j] + distance[j+1,last+1], j)
+                                          for j in group if j != last)
+                    path_dp[mask,last] = float(value)
+                    predecessor[mask,last] = previous
+            best, last = min((path_dp[mask,j] + distance[j+1,0], j) for j in group)
+            trace, current_mask, current = [], mask, last
+            while current is not None:
+                trace.append(current)
+                prior = predecessor[current_mask,current]
+                current_mask ^= 1 << current
+                current = prior
+            tour_cost[mask], tour_order[mask] = float(best), tuple(reversed(trace))
             model[mask] = clustering_cost([group], pair)
     by_anchor = [[] for _ in range(n)]
     for mask, group in subsets.items():
