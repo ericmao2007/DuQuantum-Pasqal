@@ -78,3 +78,11 @@ python3 -m http.server 8765 --directory sites/atlas-route-lab/dist
 ```
 
 The page at http://localhost:8765/ replays all 64 measured clustering trajectories, their capacity checks, best-so-far objectives against random sampling, the actual intermediate excitation probabilities for quantum routing, and the final hybrid vehicle routes. Full evidence is in `challenge/us_demo_results/`. Geographic coordinates are projected straight-line distances, not road distances; quantum and classical routing contributions are labeled. Browser controls replay saved data and do not execute Python or submit new jobs.
+
+The minimal timing comparison is `sites/atlas-route-lab/dist/compare.html`. Reproduce its actual three-run measurements with:
+
+```bash
+.venv/bin/python -m challenge.time_comparison
+```
+
+It compares exact classical CVRP with the quantum-assisted **CPU simulator**, displaying both runtime and solution quality. Raw stage timings and all repeats are saved in `challenge/us_demo_results/timing.json`; no real-QPU speedup is inferred.

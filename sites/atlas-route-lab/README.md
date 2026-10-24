@@ -21,3 +21,13 @@ python3 -m http.server 8765 --directory sites/atlas-route-lab/dist
 Open http://localhost:8765/ . All map geometry, styling, scripts, and experiment data are local assets; no map API key is needed. City coordinates are illustrative. Distance is a shared-scale equirectangular projection, not driving distance.
 
 The four stages show inputs, actual measured clustering decisions, actual intermediate excitation probabilities, and merged routes. Play/pause, speed, timeline, per-decision selectors, vehicle inspection, exact-reference overlay, and evidence export all use the recorded data. The page does not start a Python emulator in the browser. Map geometry is Census-derived US Atlas data; attribution is included in `dist/assets/MAP_LICENSE.txt`.
+
+## Minimal classical / quantum timing comparison
+
+Open `compare.html` for the two-column comparison. Regenerate its measured data from the main repository root:
+
+```bash
+.venv/bin/python -m challenge.time_comparison
+```
+
+This measures three fresh-cache runs of exact classical CVRP and the quantum-assisted local emulator on the same 15-city input. It saves raw repeats, median wall times, stage breakdowns, route quality, and runtime metadata to `dist/data/timing.json`. Quantum timing includes classical embedding and fallback work; it is not a real-QPU timing estimate. Imports, dataset loading, result export, and offline scoring are excluded.

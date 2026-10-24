@@ -52,6 +52,8 @@ class Sampler:
         self.seed = seed
         self.cache, self.embeddings, self.banks = {}, {}, []
         self.backend_seconds = 0.
+        self.embedding_seconds = 0.
+        self.simulation_seconds = 0.
         self.backend_calls = 0
         self.backend_shots = 0
         self.order = list(np.random.default_rng(instance['seed'] + 900).permutation(len(pair)))
@@ -75,7 +77,9 @@ class Sampler:
             if key not in self.cache:
                 start = time.perf_counter()
                 if pool not in self.embeddings:
+                    embedding_start = time.perf_counter()
                     self.embeddings[pool] = embed(target)
+                    self.embedding_seconds += time.perf_counter() - embedding_start
                 xy, error, iterations = self.embeddings[pool]
                 reg = pulser.Register.from_coordinates(xy, prefix='q', center=False)
                 seq = pulser.Sequence(reg, pulser.AnalogDevice)
@@ -88,7 +92,9 @@ class Sampler:
                 assert seq.get_duration() <= 6000
                 np.random.seed(self.seed + self.backend_calls)
                 config = QutipConfig(observables=[BitStrings(num_shots=BANK_SHOTS, evaluation_times=[1.0])])
+                simulation_start = time.perf_counter()
                 counts = dict(QutipBackendV2(seq, config=config).run().final_bitstrings)
+                self.simulation_seconds += time.perf_counter() - simulation_start
                 self.backend_seconds += time.perf_counter() - start
                 self.backend_calls += 1
                 self.backend_shots += sum(counts.values())

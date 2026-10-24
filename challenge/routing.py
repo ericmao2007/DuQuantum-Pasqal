@@ -111,7 +111,9 @@ def simulate(instance, group, kind, mode, seed, shots=ROUTING_SHOTS, record_occu
     start=time.perf_counter()
     spec=encoding(instance,group,kind)
     h,j=SCALE*spec['h'],SCALE*spec['J']
+    embedding_start=time.perf_counter()
     xy,error,iterations=embed(j)
+    embedding_seconds=time.perf_counter()-embedding_start
     reg=pulser.Register.from_coordinates(xy,prefix='r',center=False)
     dmm=mode=='dmm'
     device=pulser.AnalogDevice
@@ -138,7 +140,9 @@ def simulate(instance, group, kind, mode, seed, shots=ROUTING_SHOTS, record_occu
     if record_occupations:
         observables.append(Occupation(evaluation_times=observation_times))
     cfg=QutipConfig(observables=observables)
+    simulation_start=time.perf_counter()
     result=QutipBackendV2(seq,config=cfg).run()
+    simulation_seconds=time.perf_counter()-simulation_start
     counts=dict(result.final_bitstrings)
     occupation_trace=[]
     if record_occupations:
@@ -151,7 +155,7 @@ def simulate(instance, group, kind, mode, seed, shots=ROUTING_SHOTS, record_occu
             valid.append(dict(bits=bits,count=count,route=route,length=route_length(instance,route)))
     best=min(valid,key=lambda p:p['length']) if valid else None
     physical_h=h if dmm else np.full(len(h),baseline)
-    return dict(occupation_trace=occupation_trace,kind=kind,mode=mode,dmm=dmm,group=list(group),variables=spec['variables'],atoms=len(h),shots=shots,seed=seed,
+    return dict(embedding_seconds=embedding_seconds,simulation_seconds=simulation_seconds,occupation_trace=occupation_trace,kind=kind,mode=mode,dmm=dmm,group=list(group),variables=spec['variables'],atoms=len(h),shots=shots,seed=seed,
                 duration_ns=duration,coordinates_um=xy.tolist(),target_h=h.tolist(),target_J=j.tolist(),
                 constant=SCALE*spec['constant'],linear_error=float(np.linalg.norm(physical_h-h)/np.linalg.norm(h)),
                 embedding_error=error,embedding_iterations=iterations,counts=counts,
