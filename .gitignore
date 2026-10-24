@@ -3,3 +3,6 @@ __pycache__/
 *.py[cod]
 
 .DS_Store
+
+# Intermediate typesetting and PDF visual QA
+tmp/pdfs/

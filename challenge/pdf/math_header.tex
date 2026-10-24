@@ -1,0 +1,32 @@
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{203249}
+\definecolor{accent}{HTML}{315A78}
+\definecolor{muted}{HTML}{6B7B89}
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{ink}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\color{accent}}{}{0pt}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{accent}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{1.5em}{.65em}
+\titlespacing*{\subsection}{0pt}{1.2em}{.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{muted}DUQUANTUM / PASQAL}
+\fancyhead[R]{\small\color{muted}Mathematical write-up}
+\fancyfoot[L]{\footnotesize\color{muted}Model derivations and implementation scope}
+\fancyfoot[R]{\footnotesize\color{muted}\thepage}
+\renewcommand{\headrulewidth}{.3pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headheight}{15pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.45em}
+\linespread{1.045}
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks[2]
+\setlength{\abovedisplayskip}{9pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{9pt plus 2pt minus 2pt}
+\AtBeginDocument{\hypersetup{colorlinks=true,linkcolor=accent,urlcolor=accent,pdftitle={Mathematical Write-up: CVRP, Quantum Clustering and Routing},pdfauthor={DuQuantum}}}
+\let\originaltableofcontents\tableofcontents
+\renewcommand{\tableofcontents}{\originaltableofcontents\clearpage}
+% Latin Modern Math includes the standard U+2216 set-difference glyph.
+\AtBeginDocument{\let\setminus\smallsetminus}

@@ -101,3 +101,13 @@ The planetary example uses real XYZ Euclidean distances, fixed fictional coordin
 
 
 The complete mathematical derivations are collected in [MATH_WRITEUP.md](challenge/MATH_WRITEUP.md), separately from the four-page report. It covers formal CVRP, slack expansion and penalty bounds, sequential subset modeling, native Hamiltonian mapping, both TSP encodings, exact references, and every evaluation metric.
+
+
+A typeset version with rendered equations is available as [Mathematical Write-up (PDF)](output/pdf/Pasqal_Mathematical_Writeup.pdf). To rebuild it from the Markdown source:
+
+```bash
+brew install pandoc tectonic
+.venv/bin/python -m challenge.build_math_pdf
+```
+
+The complete math write-up is a separate companion to the four-page competition report. Long equations are typeset over multiple lines; the build script and LaTeX styling are tracked under `challenge/`.
