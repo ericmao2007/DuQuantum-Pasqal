@@ -297,7 +297,7 @@ $$\binom{n+1}{2}=n(n+1)/2.$$
 
 Degree two implies a disjoint union of cycles, not generally one connected tour. For **2 through 4 customers**, there are 3 through 5 vertices; two disjoint simple cycles would require at least six vertices, so degree two is sufficient. For $n\ge5$, it is not: two triangles are a counterexample at six vertices. For one customer, the depot trip traverses the same undirected edge twice and is handled classically, not by this binary simple-cycle model.
 
-Only four-customer nontrivial clusters are quantum-routed in our implementation. Larger groups receive declared classical size fallback; failed four-customer batches are not repaired. Position encoding is also capped at four customers for execution. At four customers the comparison is 16 versus 10 atoms.
+In the official Track B benchmark, only four-customer nontrivial clusters are quantum-routed. The separate planetary demo quantum-routes all three groups (four, three, and three customers) using the same edge encoding, with no classical tour fallback. Larger groups receive declared classical size fallback; failed four-customer batches are not repaired. Position encoding is also capped at four customers for execution. At four customers the comparison is 16 versus 10 atoms.
 
 ### TSP penalty choice
 
@@ -385,7 +385,7 @@ $$\widehat p_{\rm valid}=\frac{\sum_{b\text{ valid}}N_b}{N_{\rm shots}},\qquad
 
 Under independent route draws for fixed clusters, their reference-hit probabilities multiply. This is conditional on the chosen clustering, not an unconditional full-CVRP success probability. For independent, identically distributed trials with success probability $p$, best-of-$M$ success is $1-(1-p)^M$; shared finite banks, adaptive choices, and best-clustering selection require care before using that formula.
 
-Our conditional clustering banks contain 1000 measured bitstrings per distinct register/detuning. Benchmark trajectories resample from these finite empirical distributions; they share bank-estimation uncertainty. Official runs use 32 trajectories; the US/space demos use 64. Routing uses 2000 shots per eligible cluster. Multiple counts of one tour are distinct shots, not distinct candidate tours.
+Our conditional clustering banks contain 1000 measured bitstrings per distinct register/detuning. Benchmark trajectories resample from these finite empirical distributions; they share bank-estimation uncertainty. Official benchmark runs use 32 trajectories and 2000 routing shots per eligible cluster. The retained US demo uses 64 trajectories. The updated planetary demo uses four seeded window orders with 128 trajectories each (512 total), and 16000 routing shots for each of its three ships. Multiple counts of one tour are distinct shots, not distinct candidate tours.
 
 ## 18. Optional background: single-atom pulses, blockade, and Ising spins
 
@@ -423,4 +423,17 @@ plus constant $c_0+\frac12\sum_a h_a+\frac14\sum_{a<b}J_{ab}$. This spin-sign co
 
 Primary task source: user-supplied *Pasqal-challenge-final.pdf*, version 3.0, updated 24 October 2026, especially Derive 2.1, 3.1, 4.1 and Tasks A1-A4/B1-B3. General squared-constraint methodology: Andrew Lucas, *Ising formulations of many NP problems*, Frontiers in Physics 2 (2014), https://doi.org/10.3389/fphy.2014.00005 . The alternative sequential method and its limitations are derived explicitly above; no novel exact encoding is claimed.
 
-Implementation: `core.py` (distances, objective, certificates, exact references), `quantum.py` (subset QUBO and embedding), `routing.py` (TSP QUBOs, controls, decoders), `run.py` and `track_b.py` (sampling and metrics), `space_demo.py` (separate XYZ example), and the three test modules (independent algebra/reference/evidence checks). AI assisted derivation, writing, and implementation. The team must review and be able to defend every formula and claim.
+Implementation: `core.py` (distances, objective, certificates, exact references), `quantum.py` (subset QUBO and embedding), `routing.py` (TSP QUBOs, controls, decoders), `run.py` and `track_b.py` (sampling and metrics), `space_demo.py` (separate XYZ example), and the four test modules (independent algebra/reference/evidence and tuning checks). AI assisted derivation, writing, and implementation. The team must review and be able to defend every formula and claim.
+
+
+## 20. Separate planetary optimization experiment
+
+This supplementary example uses fixed fictional XYZ customer coordinates and Euclidean distances normalized by $100\sqrt{3}$. Physical atom registers remain two-dimensional. It is not an official instance tier, and its improved result does not replace any row of the two-dimensional benchmark.
+
+The original planetary run used one seeded eight-customer window order, 64 clustering trajectories and 2000 routing shots per ship. Its final distance was 517.932168 space units, 20.9761% above the exact CVRP optimum of 428.127519.
+
+The revised search uses four seeded window orders (2926 through 2929), 128 trajectories per order and the original clustering objective $F$. It selects the least-$F$ feasible measured trajectory without using reference groups or exact tour costs for that choice. There are 334 feasible trajectories out of 512. The selected grouping coincides with a global CVRP-optimal grouping on this particular instance; this does not make the clustering surrogate generally equivalent to CVRP.
+
+All three selected groups are quantum-routed with edge/DMM emulation, using 16000 shots each. The 10-, 6- and 6-atom registers yield 51, 1279 and 1178 valid shots, respectively. Their shortest measured legal tours have lengths 147.437171, 141.412000 and 139.278347 space units. Their sum matches the independent exact CVRP optimum within floating-point precision, reducing total travel by 17.34% from the earlier plan.
+
+The recorded final reproduction takes about 23.57 seconds on the development machine, including reference evaluation and partial output writing. Clustering uses 201 backend calls and 201000 shots; routing adds three calls and 48000 shots. Preliminary diagnostic searches cost additional computation and are not included in that timer. This is a higher-budget, instance-specific result, not an equal-budget speed comparison, a QPU result or a general optimality guarantee. Detailed evidence and reproduction instructions are in SPACE_OPTIMIZATION.md and space_demo_results/.

@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "checked_at_local": "2026-10-25",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.11.15",
+  "clean_source": "Isolated git-archive export without project .venv; pinned packages installed in new environment; exact README uv command executed in export.",
+  "command": "uv run --python 3.11 --with-requirements requirements.lock.txt python -m challenge.track_b",
+  "exit_code": 0,
+  "elapsed_seconds": 385.74242401123047,
+  "instances": 12,
+  "rows": 60,
+  "metrics_comparison": "All CSV fields compared except three measured wall-time columns; numeric tolerance rel/abs 1e-8.",
+  "excluded_columns": [
+    "clustering_elapsed_seconds",
+    "reference_evaluation_seconds",
+    "routing_elapsed_seconds"
+  ],
+  "metric_differences": [],
+  "raw_histogram_files_checked": 69,
+  "raw_histogram_mismatches": [],
+  "requirements_sha256": "e99a062371bd98447b8a6f706b1f4e91081eb7117dd33a6fff3fbba483d55883",
+  "benchmark_output": "Historical committed evidence retained; clean rerun output kept separately.",
+  "competition_submitted": false,
+  "clean_test_exit_code": 0,
+  "clean_tests": "...............\n----------------------------------------------------------------------\nRan 15 tests in 1.175s\n\nOK\n"
+}

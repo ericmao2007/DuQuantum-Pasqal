@@ -84,6 +84,7 @@ def main():
     # Promote numbered content sections for an appropriate PDF contents hierarchy.
     markdown=re.sub(r'^## (\d+\. .+)$',r'# \1',markdown,flags=re.M)
     markdown=markdown.replace('# 19. Mathematical claims and scope checklist', r'\clearpage'+'\n\n# 19. Mathematical claims and scope checklist')
+    markdown=markdown.replace('# 20. Separate planetary optimization experiment', r'\clearpage'+'\n\n# 20. Separate planetary optimization experiment')
     markdown=re.sub(r'\$\$(.*?)\$\$',format_equation,markdown,flags=re.S)
     markdown=markdown.replace('| Encoding | Count | S: N=4,K=2,Q=7 | M: N=10,K=3,Q=20 | L: N=15,K=4,Q=30 |', '| Encoding | Count | S | M | L |').replace('|---|---|---:|---:|---:|', '|--------------------------------------|---------------------------------------|-------:|-------:|-------:|')
     markdown=markdown.replace('The 80-atom cap is met', 'Tier parameters are S: $(N,K,Q)=(4,2,7)$; M: $(10,3,20)$; L: $(15,4,30)$.\n\nThe 80-atom cap is met')

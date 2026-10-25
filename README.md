@@ -2,7 +2,7 @@
 
 A reproducible **Track A + Track B** emulator submission: sequential quantum clustering, two TSP encodings, explicit global/DMM controls, exact evaluation, and honest failure/fallback accounting. All source and documents are in English. No hardware execution or quantum advantage is claimed.
 
-## One-command reproduction
+## One-command reproduction of the formal benchmark
 
 From the repository root with `uv` installed:
 
@@ -111,3 +111,19 @@ brew install pandoc tectonic
 ```
 
 The complete math write-up is a separate companion to the four-page competition report. Long equations are typeset over multiple lines; the build script and LaTeX styling are tracked under `challenge/`.
+
+
+## Final submission and team handoff
+
+- [Technical submission checklist](SUBMISSION_CHECKLIST.md)
+- [Detailed team explanation and defense guide](docs/TEAM_HANDOFF.md)
+- [Clean-environment reproduction evidence](output/submission/reproduction_check.json)
+- [Final submission ZIP](output/submission/DuQuantum_Pasqal_Final.zip)
+
+The ZIP opens with `REPORT.pdf` (the four-page formal report) and `MATHEMATICS.pdf` (complete derivations, including the separately scoped updated planetary experiment). It also contains source, pinned dependencies, certified instances, reference values, results and raw shot evidence. An embedded SHA-256 manifest verifies every packaged file. Rebuild the archive with:
+
+```bash
+python3 scripts/package_submission.py
+```
+
+The formal benchmark, held-out sampler tuning and fixed-instance planetary optimization are distinct experiments. A zero gap on the planetary example is not a claim that the formal benchmark is universally optimal. No competition-portal upload or email submission has been performed; follow the organizer's separate logistics instructions.
