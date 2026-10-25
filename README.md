@@ -127,3 +127,8 @@ python3 scripts/package_submission.py
 ```
 
 The formal benchmark, held-out sampler tuning and fixed-instance planetary optimization are distinct experiments. A zero gap on the planetary example is not a claim that the formal benchmark is universally optimal. No competition-portal upload or email submission has been performed; follow the organizer's separate logistics instructions.
+
+
+## Verified Pasqal Cloud smoke test
+
+A separate four-atom global sequence was submitted to Pasqal Cloud EMU_FREE and returned 1000 measurements. See [cloud test details](challenge/CLOUD_SMOKE.md) and [raw local/cloud evidence](challenge/cloud_results/smoke.json). Run `python -m challenge.cloud_smoke --help` for the credential-safe runner. This is one remote emulator job; the formal benchmark and planetary runtime claims remain local CPU results. Never hard-code credentials or put passwords into Git.

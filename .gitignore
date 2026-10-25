@@ -6,3 +6,6 @@ __pycache__/
 
 # Intermediate typesetting and PDF visual QA
 tmp/pdfs/
+
+# Local cloud authentication/run state (no credentials stored)
+tmp/cloud/

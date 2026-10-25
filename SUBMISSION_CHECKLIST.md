@@ -37,6 +37,10 @@ The first command regenerates the formal benchmark outputs in place. Use a separ
 
 The exact README reproduction command completed in a clean isolated source export in 385.74 seconds. It regenerated all 12 instances, all 60 rows and the four-page report. Every non-timing CSV field matches the committed evidence (numeric tolerance 1e-8). Raw histograms match exactly across all 69 routing-bank/clustering files. All 15 tests pass in the clean run. The updated mathematical PDF has 14 pages and was rendered and visually inspected; the formal report remains four pages.
 
+## Subsequent optional cloud smoke test
+
+One four-atom S_11 global sequence returned 1000 measurements from Pasqal Cloud EMU_FREE. Evidence is in challenge/cloud_results/smoke.json and challenge/CLOUD_SMOKE.md. This is a separate authenticated cloud-emulator round trip; all formal benchmark results and planetary timings retain their original local CPU scope. No password, token, login email or account project ID is packaged.
+
 ## Before external submission
 
 Technical files are packaged, but no upload to a competition portal or email has been performed. The supplied brief does not specify an upload destination, concrete deadline or presentation duration. The team must check organizer messages for these details, fill any required team/contact fields, review the report and derivations, and ensure each member can explain the work. Pushing GitHub and creating this ZIP do not constitute external competition submission.

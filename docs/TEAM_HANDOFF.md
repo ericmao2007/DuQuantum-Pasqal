@@ -115,3 +115,8 @@ If asked whether the algorithm is optimal, answer that it is a heuristic. One me
 The technical package contains code, pinned dependencies, certified data, references, results, raw banks, four-page report and full mathematical write-up. The updated mathematical PDF includes current demo settings. The submission ZIP has root REPORT.pdf and MATHEMATICS.pdf aliases and a SHA-256 manifest.
 
 Clean-environment verification details are recorded in output/submission/reproduction_check.json. Do not describe unit tests alone as a full reproduction. Competition upload, deadline, presentation format and team/contact fields depend on organizer instructions. No email or portal submission has been performed by this work.
+
+
+## 13. Subsequent cloud connectivity validation
+
+One four-atom S_11 global sequence has now returned 1000 measurements from Pasqal Cloud EMU_FREE. Its local/cloud empirical histogram total variation is 0.047. See challenge/CLOUD_SMOKE.md for the batch/job IDs, raw evidence, scope and timing caveats. This establishes a real cloud-emulator round trip, not a full cloud benchmark, DMM compatibility check or QPU execution. Do not relabel the earlier local timings as cloud timings.
