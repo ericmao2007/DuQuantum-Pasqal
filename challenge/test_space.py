@@ -46,15 +46,20 @@ class SpaceChecks(unittest.TestCase):
         self.assertEqual(np.asarray(instance['customers']).shape,(10,3))
         validate(instance,groups_to_assignment(10,[r['route'] for r in data['routes']]))
         self.assertAlmostEqual(sum(route_length(instance,r['route']) for r in data['routes']),data['total_distance'])
-        self.assertEqual(sum(a['feasible'] for a in data['clustering']['attempts']),40)
+        self.assertEqual(len(data['clustering']['attempts']),data['protocol']['clustering_attempts'])
+        self.assertEqual(sum(a['feasible'] for a in data['clustering']['attempts']),data['clustering']['metrics']['feasible_attempts'])
+        measured_plans=[a for a in data['clustering']['attempts'] if a['feasible']]
+        self.assertAlmostEqual(data['clustering']['best']['model_cost'],min(p['model_cost'] for p in measured_plans))
+        self.assertEqual([a['attempt'] for a in data['clustering']['attempts']],list(range(len(data['clustering']['attempts']))))
+        self.assertEqual(len(data['protocol']['search_rounds']),4)
         self.assertEqual(sorted(r['atoms'] for r in data['routes']), [6, 6, 10])
         evidence=json.loads((ROOT.parent/'sites/atlas-route-lab/dist/data/space-evidence.json').read_text())
         self.assertEqual(len(evidence['routing_banks']), 3)
         for row, bank in zip(data['routes'], evidence['routing_banks']):
             self.assertEqual(bank['group'], row['group'])
             self.assertEqual(row['method'], 'Quantum edge / DMM')
-            self.assertEqual(row['shots'], 2000)
-            self.assertEqual(sum(bank['counts'].values()), 2000)
+            self.assertEqual(row['shots'], data['protocol']['routing_shots'])
+            self.assertEqual(sum(bank['counts'].values()), row['shots'])
             self.assertEqual(row['valid_shots'], sum(c['count'] for c in row['candidates']))
             spec=encoding(instance,row['group'],'edge')
             measured=[]
@@ -81,6 +86,8 @@ class SpaceChecks(unittest.TestCase):
                 self.assertLessEqual(row['valid_shots'],row['shots'])
         reference,_,_=references(instance)
         self.assertAlmostEqual(reference['cvrp_optimum'],data['reference']['cvrp_optimum'])
+        self.assertAlmostEqual(data['total_distance'],reference['cvrp_optimum'])
+        self.assertLess(data['total_distance'],data['optimization']['baseline']['total_distance'])
 
 
 if __name__=='__main__':unittest.main()

@@ -66,7 +66,7 @@ class Sampler:
         self.instance, self.pair, self.pulse = instance, pair, pulse
         self.seed = seed
         self.options=dict(options or {})
-        allowed={'omega','scale','reward_factor','durations','embedding_starts','bank_shots'}
+        allowed={'omega','scale','reward_factor','durations','embedding_starts','bank_shots','order_seed'}
         if set(self.options)-allowed:
             raise ValueError('Unknown sampler options')
         if self.options.get('scale',SCALE)<=0 or self.options.get('reward_factor',1)<=0:
@@ -77,7 +77,7 @@ class Sampler:
         self.simulation_seconds = 0.
         self.backend_calls = 0
         self.backend_shots = 0
-        self.order = list(np.random.default_rng(instance['seed'] + 900).permutation(len(pair)))
+        self.order = list(np.random.default_rng(self.options.get('order_seed', instance['seed'] + 900)).permutation(len(pair)))
 
     def pool(self, remaining):
         return tuple(i for i in self.order if i in remaining)[:WINDOW]

@@ -1,0 +1,25 @@
+{
+  "total_distance": 517.9321679304419,
+  "gap_percent": 20.976145065668696,
+  "groups": [
+    [
+      6,
+      7,
+      8
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      4,
+      5,
+      9
+    ]
+  ],
+  "routing_shots": 2000,
+  "clustering_attempts": 64,
+  "model_gap_percent": 12.04952981346199
+}
