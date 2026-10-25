@@ -132,3 +132,6 @@ The formal benchmark, held-out sampler tuning and fixed-instance planetary optim
 ## Verified Pasqal Cloud smoke test
 
 A separate four-atom global sequence was submitted to Pasqal Cloud EMU_FREE and returned 1000 measurements. See [cloud test details](challenge/CLOUD_SMOKE.md) and [raw local/cloud evidence](challenge/cloud_results/smoke.json). Run `python -m challenge.cloud_smoke --help` for the credential-safe runner. This is one remote emulator job; the formal benchmark and planetary runtime claims remain local CPU results. Never hard-code credentials or put passwords into Git.
+
+
+A subsequent [M-tier cloud timing pilot](challenge/CLOUD_M_PILOT.md) completed 24 clustering banks and two 10-atom edge routes in approximately 3 min 19 s from first submission to the final edge result, with up to four workers. The 16-atom position/DMM request was rejected: the tested EMU_FREE interface enforces 12 atoms. Thus the original suite cannot be moved unchanged to that backend. Raw pilot evidence is in `challenge/cloud_results/m_benchmark/`; no paid backend was requested.

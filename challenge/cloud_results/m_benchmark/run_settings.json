@@ -1,0 +1,7 @@
+{
+  "instance": "M_11",
+  "attempts": 32,
+  "workers": 4,
+  "backend": "EMU_FREE",
+  "resampling_seed": 10011
+}

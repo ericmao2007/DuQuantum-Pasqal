@@ -62,9 +62,10 @@ def embed(target, starts=1, seed=17):
 
 
 class Sampler:
-    def __init__(self, instance, pair, pulse, seed, options=None):
+    def __init__(self, instance, pair, pulse, seed, options=None, executor=None):
         self.instance, self.pair, self.pulse = instance, pair, pulse
         self.seed = seed
+        self.executor = executor
         self.options=dict(options or {})
         allowed={'omega','scale','reward_factor','durations','embedding_starts','bank_shots','order_seed'}
         if set(self.options)-allowed:
@@ -115,7 +116,8 @@ class Sampler:
                 np.random.seed(self.seed + self.backend_calls)
                 config = QutipConfig(observables=[BitStrings(num_shots=self.options.get('bank_shots',BANK_SHOTS), evaluation_times=[1.0])])
                 simulation_start = time.perf_counter()
-                counts = dict(QutipBackendV2(seq, config=config).run().final_bitstrings)
+                result = self.executor(seq, config) if self.executor is not None else QutipBackendV2(seq, config=config).run()
+                counts = dict(result.final_bitstrings)
                 self.simulation_seconds += time.perf_counter() - simulation_start
                 self.backend_seconds += time.perf_counter() - start
                 self.backend_calls += 1

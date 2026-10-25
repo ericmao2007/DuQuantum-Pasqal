@@ -1,0 +1,199 @@
+{
+  "instance": "M_11",
+  "backend": "EMU_FREE",
+  "status": "audited_from_saved_cloud_results",
+  "attempts": 32,
+  "feasible_attempts": 21,
+  "workers": 4,
+  "resampling_seed": 10011,
+  "jobs": 27,
+  "completed_jobs": 26,
+  "rejected_requests": 1,
+  "returned_shots": 28000,
+  "observed_clustering_wall_seconds": 167.0360917081125,
+  "first_cloud_submit_to_last_clustering_result_seconds": 166.820678,
+  "first_cloud_submit_to_both_edge_results_seconds": 198.987457,
+  "successful_job_mean_seconds": 24.621960318987615,
+  "successful_job_min_seconds": 16.511226708069444,
+  "successful_job_max_seconds": 31.82490237476304,
+  "model_gap_percent": 8.554885510492394,
+  "selected_groups": [
+    [
+      0,
+      2,
+      7
+    ],
+    [
+      1,
+      3,
+      6,
+      8
+    ],
+    [
+      4,
+      5,
+      9
+    ]
+  ],
+  "methods": {
+    "edge_global": {
+      "pipeline_feasible": true,
+      "cost": 431.72739775882434,
+      "gap_percent": 9.796011660440772
+    },
+    "edge_dmm": {
+      "pipeline_feasible": true,
+      "cost": 450.2033861921677,
+      "gap_percent": 14.494786516973669
+    },
+    "position_dmm": {
+      "pipeline_feasible": false,
+      "cost": null,
+      "gap_percent": null
+    }
+  },
+  "routing": [
+    {
+      "cluster": 1,
+      "group": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "kind": "edge",
+      "mode": "global",
+      "atoms": 10,
+      "status": "completed",
+      "batch_id": "6e7ea392-4633-4c2e-be51-b5f7a897cc63",
+      "shots": 2000,
+      "valid_shots": 5,
+      "best": {
+        "bits": "0101110001",
+        "count": 1,
+        "route": [
+          3,
+          1,
+          6,
+          8
+        ],
+        "length": 176.98528331591746
+      },
+      "exact_tsp": 176.98528331591743,
+      "service_code": null,
+      "maximum_supported_atoms": null
+    },
+    {
+      "cluster": 1,
+      "group": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "kind": "edge",
+      "mode": "dmm",
+      "atoms": 10,
+      "status": "completed",
+      "batch_id": "80717e7c-8e4a-4d78-b82c-1007a573b547",
+      "shots": 2000,
+      "valid_shots": 5,
+      "best": {
+        "bits": "0011110010",
+        "count": 2,
+        "route": [
+          6,
+          1,
+          3,
+          8
+        ],
+        "length": 195.46127174926085
+      },
+      "exact_tsp": 176.98528331591743,
+      "service_code": null,
+      "maximum_supported_atoms": null
+    },
+    {
+      "cluster": 1,
+      "group": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "kind": "position",
+      "mode": "dmm",
+      "atoms": 16,
+      "status": "submit_rejected",
+      "batch_id": null,
+      "shots": 2000,
+      "valid_shots": 0,
+      "best": null,
+      "exact_tsp": 176.98528331591743,
+      "service_code": "CB1110",
+      "maximum_supported_atoms": 12
+    }
+  ],
+  "reference": {
+    "model_optimum": 7.883609369654415,
+    "cvrp_optimum": 393.2086341114107,
+    "model_optimal_clusterings": 1,
+    "cvrp_optimal_clusterings": 1,
+    "model_optimal_groups": [
+      [
+        0,
+        2,
+        5,
+        7
+      ],
+      [
+        1,
+        3,
+        6
+      ],
+      [
+        4,
+        8,
+        9
+      ]
+    ],
+    "cvrp_optimal_groups": [
+      [
+        0,
+        2,
+        5,
+        7
+      ],
+      [
+        1,
+        3,
+        6
+      ],
+      [
+        4,
+        8,
+        9
+      ]
+    ],
+    "model_optimum_routed_cost": 393.2086341114107,
+    "status": "proven optimum: exhaustive feasible subsets, exact partition DP"
+  },
+  "timing_note": "Cloud intervals derive from actual submitted_at/returned_at timestamps. They include queue/API/polling, exclude initial password entry, tiny pre-submit preparation, post-result audit, and later failed-position SDK retry delay. No complete all-variant wall time was captured after the rejection.",
+  "diagnostic_note": "One preceding 8-atom diagnostic job and a client observable-UUID cache correction are retained separately in diagnostics/; not included in the clean pilot job count or timing.",
+  "policy": "Official benchmark trivial n<=3 tours use exact classical evaluation; n=4 routing is cloud-only. No failed job is repaired or replaced by local simulation.",
+  "sampling_note": "Stage-batched 32 trajectories share finite cloud banks; RNG consumption differs from the sequential local evaluator. This is a timing/compatibility pilot, not a controlled accuracy comparison.",
+  "compatibility": "10-atom global and DMM completed; 16-atom position/DMM rejected with CB1110, current EMU_FREE maximum 12 atoms.",
+  "scope": "One M_11 uniform-demand case; no paid backend or QPU.",
+  "full_suite_projection": {
+    "historical_clustering_banks": 247,
+    "historical_both_edge_routing_banks": 30,
+    "supported_edge_job_count_proxy": 277,
+    "serial_seconds_proxy": 6869.343627794548,
+    "ideal_four_worker_seconds_proxy": 1717.335906948637,
+    "planning_minutes": [
+      30,
+      60
+    ],
+    "note": "Rough planning range for both edge variants with shared clustering, four concurrent jobs and current queue conditions; not a confidence interval or guarantee. Cloud sampling can change bank/cluster counts. The original suite also has 15 sixteen-atom position jobs that this EMU_FREE interface rejects, so the full original suite cannot execute unchanged on it."
+  }
+}

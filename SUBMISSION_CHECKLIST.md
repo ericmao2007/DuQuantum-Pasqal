@@ -41,6 +41,8 @@ The exact README reproduction command completed in a clean isolated source expor
 
 One four-atom S_11 global sequence returned 1000 measurements from Pasqal Cloud EMU_FREE. Evidence is in challenge/cloud_results/smoke.json and challenge/CLOUD_SMOKE.md. This is a separate authenticated cloud-emulator round trip; all formal benchmark results and planetary timings retain their original local CPU scope. No password, token, login email or account project ID is packaged.
 
+A subsequent M_11 cloud pilot returned 28000 shots from 26 jobs; the two edge results were available after 198.99 s. The current EMU_FREE interface rejected the 16-atom position sequence with a 12-atom limit. See challenge/CLOUD_M_PILOT.md. This is a partially supported single-instance cloud pilot, not a full cloud replacement for the submitted benchmark. A preceding diagnostic and SDK rejection are retained transparently.
+
 ## Before external submission
 
 Technical files are packaged, but no upload to a competition portal or email has been performed. The supplied brief does not specify an upload destination, concrete deadline or presentation duration. The team must check organizer messages for these details, fill any required team/contact fields, review the report and derivations, and ensure each member can explain the work. Pushing GitHub and creating this ZIP do not constitute external competition submission.

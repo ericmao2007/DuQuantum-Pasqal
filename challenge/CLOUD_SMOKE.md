@@ -45,3 +45,5 @@ To validate the sequence locally without authentication or submission:
 ```
 
 The official 12-instance/60-row benchmark, its four-page report, tuning experiment and planetary optimization still refer to their local CPU runs. This smoke test establishes an authenticated remote submission and result retrieval for one global sequence only; it does not validate all larger registers, DMM controls or full end-to-end cloud routing.
+
+A subsequent M-tier pilot separately tested larger global banks and 10-atom DMM routing. See CLOUD_M_PILOT.md for those results and the observed 12-atom EMU_FREE limit; the small smoke test above remains a distinct experiment.

@@ -107,7 +107,7 @@ def energy(bits,spec):
     return float(spec['constant']+spec['h']@x+np.sum(np.triu(spec['J'],1)*np.outer(x,x)))
 
 
-def simulate(instance, group, kind, mode, seed, shots=ROUTING_SHOTS, record_occupations=False):
+def simulate(instance, group, kind, mode, seed, shots=ROUTING_SHOTS, record_occupations=False, executor=None):
     start=time.perf_counter()
     spec=encoding(instance,group,kind)
     h,j=SCALE*spec['h'],SCALE*spec['J']
@@ -141,7 +141,7 @@ def simulate(instance, group, kind, mode, seed, shots=ROUTING_SHOTS, record_occu
         observables.append(Occupation(evaluation_times=observation_times))
     cfg=QutipConfig(observables=observables)
     simulation_start=time.perf_counter()
-    result=QutipBackendV2(seq,config=cfg).run()
+    result=executor(seq,cfg) if executor is not None else QutipBackendV2(seq,config=cfg).run()
     simulation_seconds=time.perf_counter()-simulation_start
     counts=dict(result.final_bitstrings)
     occupation_trace=[]

@@ -24,5 +24,7 @@
   "clean_test_exit_code": 0,
   "clean_tests": "...............\n----------------------------------------------------------------------\nRan 15 tests in 1.175s\n\nOK\n",
   "verification_scope": "Formal benchmark clean reproduction; optional cloud smoke test verified separately.",
-  "cloud_smoke_evidence_sha256": "8813e4ffb94f9caa01944e7013fd55850d73f55aa05471aad84c53a1aa755a3d"
+  "cloud_smoke_evidence_sha256": "8813e4ffb94f9caa01944e7013fd55850d73f55aa05471aad84c53a1aa755a3d",
+  "cloud_m_pilot_summary_sha256": "62547c0475d80822c09a898f3d1784f148874f24cad8a53f7a5f7349be1fa88e",
+  "cloud_offline_tests": 4
 }

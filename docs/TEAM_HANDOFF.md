@@ -120,3 +120,8 @@ Clean-environment verification details are recorded in output/submission/reprodu
 ## 13. Subsequent cloud connectivity validation
 
 One four-atom S_11 global sequence has now returned 1000 measurements from Pasqal Cloud EMU_FREE. Its local/cloud empirical histogram total variation is 0.047. See challenge/CLOUD_SMOKE.md for the batch/job IDs, raw evidence, scope and timing caveats. This establishes a real cloud-emulator round trip, not a full cloud benchmark, DMM compatibility check or QPU execution. Do not relabel the earlier local timings as cloud timings.
+
+
+## 14. M-tier cloud timing and backend limit
+
+A subsequent M_11 cloud pilot completed 24 clustering banks and two edge-routing jobs, returning 28000 measurements. Cloud clustering took 167.04 s; the first submission to both edge results took 198.99 s with at most four workers. The 16-atom position/DMM sequence was rejected with HTTP 422 / CB1110 because the tested EMU_FREE submission path supports at most 12 atoms. Do not claim the full two-encoding suite is cloud-compatible. The pilot retains the formal classical-trivial routing policy and changes trajectory RNG consumption through stage batching. Report its outcome and timing separately from the local benchmark and the planetary demo. Full details are in challenge/CLOUD_M_PILOT.md. Additional offline cloud tests cover cache identity, the SDK BaseException error family and raw pilot evidence.
