@@ -1,0 +1,37 @@
+{
+  "winner": "candidate_10",
+  "sampler_options": {
+    "omega": 8.0,
+    "scale": 2.0,
+    "reward_factor": 0.8,
+    "durations": [
+      800,
+      3600,
+      800
+    ],
+    "embedding_starts": 3
+  },
+  "wall_seconds": 170.21472704224288,
+  "validation": {
+    "baseline": {
+      "instances": 6,
+      "solved": 6,
+      "mean_feasibility": 0.5885416666666666,
+      "mean_model_gap_solved": 8.413967330224855,
+      "mean_cvrp_gap_solved": 11.740690577652439,
+      "total_seconds": 18.58662800071761,
+      "backend_shots": 126000,
+      "backend_calls": 126
+    },
+    "selected": {
+      "instances": 6,
+      "solved": 6,
+      "mean_feasibility": 0.6041666666666666,
+      "mean_model_gap_solved": 7.565762597369922,
+      "mean_cvrp_gap_solved": 11.143963536508528,
+      "total_seconds": 43.42326970724389,
+      "backend_shots": 153000,
+      "backend_calls": 153
+    }
+  }
+}

@@ -122,6 +122,7 @@ def route_pipeline(instance,reference,clustering,costs,orders,kind,mode,seed,out
 
 
 def main():
+    global OUT
     parser=argparse.ArgumentParser()
     parser.add_argument('--tiers',nargs='+',choices=['S','M','L'],default=['S','M','L'])
     parser.add_argument('--seeds',nargs='+',type=int,default=[11,29])
@@ -129,7 +130,11 @@ def main():
     parser.add_argument('--attempts',type=int,default=32)
     parser.add_argument('--shots',type=int,default=ROUTING_SHOTS)
     parser.add_argument('--routing',nargs='+',choices=['edge_global','edge_dmm','position_dmm','random_global'],default=['edge_global','edge_dmm','position_dmm','random_global'])
+    parser.add_argument('--sampler-config', type=Path, help='JSON selected.json from challenge.tune')
     args=parser.parse_args()
+    sampler_options=json.loads(args.sampler_config.read_text())['sampler_options'] if args.sampler_config else None
+    if args.sampler_config:
+        OUT=ROOT/'track_b_tuned_results'
     if args.attempts<1 or args.shots<1:
         parser.error('attempts and shots must be positive')
     OUT.mkdir(exist_ok=True);(OUT/'instances').mkdir(exist_ok=True);(OUT/'banks').mkdir(exist_ok=True)
@@ -145,7 +150,7 @@ def main():
                 reference['evaluation_seconds']=time.perf_counter()-reference_start
                 save(OUT/f'{name}_reference.json',reference)
                 for clustering_method in ['slow','random']:
-                    _,clustering=evaluate(instance,reference,costs,orders,clustering_method,seed+10000,args.attempts)
+                    _,clustering=evaluate(instance,reference,costs,orders,clustering_method,seed+10000,args.attempts,sampler_options=sampler_options if clustering_method!='random' else None)
                     clustering_rows.append(clustering['metrics'])
                     save(OUT/f'{name}_clustering_{clustering_method}.json',clustering)
                     routes=args.routing if clustering_method=='slow' else ['random_global']
@@ -161,12 +166,15 @@ def main():
                         write_csv(OUT/'results.csv',metrics)
                         write_csv(OUT/'clusters.csv',cluster_rows)
                         write_csv(OUT/'clustering_results.csv',clustering_rows)
-    save(OUT/'settings.json',vars(args)|dict(routing_limit=ROUTING_LIMIT,noise=False,modulation=False,clustering_global_only=True))
+    save(OUT/'settings.json',vars(args)|dict(sampler_config=str(args.sampler_config) if args.sampler_config else None,sampler_options=sampler_options,routing_limit=ROUTING_LIMIT,noise=False,modulation=False,clustering_global_only=True))
     print(f'Saved {OUT}',flush=True)
-    from .summarize_b import summarize
-    from .report_b import build
-    summarize()
-    build()
+    if args.sampler_config:
+        print('Custom sampler evidence saved separately; baseline PDF template was not regenerated.')
+    else:
+        from .summarize_b import summarize
+        from .report_b import build
+        summarize()
+        build()
 
 
 if __name__=='__main__':

@@ -1,0 +1,33 @@
+{
+  "candidate": "candidate_10",
+  "sampler_options": {
+    "omega": 8.0,
+    "scale": 2.0,
+    "reward_factor": 0.8,
+    "durations": [
+      800,
+      3600,
+      800
+    ],
+    "embedding_starts": 3
+  },
+  "finalists": [
+    "baseline",
+    "candidate_14",
+    "candidate_10"
+  ],
+  "training_scores": {
+    "baseline": [
+      3,
+      0.27513271151087304
+    ],
+    "candidate_14": [
+      3,
+      0.21204519036080777
+    ],
+    "candidate_10": [
+      4,
+      0.28277756688639333
+    ]
+  }
+}

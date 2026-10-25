@@ -1,0 +1,203 @@
+{
+  "training": [
+    "M_11",
+    "M_heterogeneous_11",
+    "L_11",
+    "L_heterogeneous_11"
+  ],
+  "heldout": [
+    "S_101",
+    "S_heterogeneous_101",
+    "M_101",
+    "M_heterogeneous_101",
+    "L_101",
+    "L_heterogeneous_101"
+  ],
+  "candidates": {
+    "baseline": {},
+    "candidate_01": {
+      "omega": 4.0,
+      "scale": 2.0,
+      "reward_factor": 0.8,
+      "durations": [
+        400,
+        1200,
+        400
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_02": {
+      "omega": 4.0,
+      "scale": 2.0,
+      "reward_factor": 0.8,
+      "durations": [
+        800,
+        3600,
+        800
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_03": {
+      "omega": 4.0,
+      "scale": 2.0,
+      "reward_factor": 1.2,
+      "durations": [
+        400,
+        1200,
+        400
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_04": {
+      "omega": 4.0,
+      "scale": 2.0,
+      "reward_factor": 1.2,
+      "durations": [
+        800,
+        3600,
+        800
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_05": {
+      "omega": 4.0,
+      "scale": 4.0,
+      "reward_factor": 0.8,
+      "durations": [
+        400,
+        1200,
+        400
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_06": {
+      "omega": 4.0,
+      "scale": 4.0,
+      "reward_factor": 0.8,
+      "durations": [
+        800,
+        3600,
+        800
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_07": {
+      "omega": 4.0,
+      "scale": 4.0,
+      "reward_factor": 1.2,
+      "durations": [
+        400,
+        1200,
+        400
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_08": {
+      "omega": 4.0,
+      "scale": 4.0,
+      "reward_factor": 1.2,
+      "durations": [
+        800,
+        3600,
+        800
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_09": {
+      "omega": 8.0,
+      "scale": 2.0,
+      "reward_factor": 0.8,
+      "durations": [
+        400,
+        1200,
+        400
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_10": {
+      "omega": 8.0,
+      "scale": 2.0,
+      "reward_factor": 0.8,
+      "durations": [
+        800,
+        3600,
+        800
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_11": {
+      "omega": 8.0,
+      "scale": 2.0,
+      "reward_factor": 1.2,
+      "durations": [
+        400,
+        1200,
+        400
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_12": {
+      "omega": 8.0,
+      "scale": 2.0,
+      "reward_factor": 1.2,
+      "durations": [
+        800,
+        3600,
+        800
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_13": {
+      "omega": 8.0,
+      "scale": 4.0,
+      "reward_factor": 0.8,
+      "durations": [
+        400,
+        1200,
+        400
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_14": {
+      "omega": 8.0,
+      "scale": 4.0,
+      "reward_factor": 0.8,
+      "durations": [
+        800,
+        3600,
+        800
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_15": {
+      "omega": 8.0,
+      "scale": 4.0,
+      "reward_factor": 1.2,
+      "durations": [
+        400,
+        1200,
+        400
+      ],
+      "embedding_starts": 3
+    },
+    "candidate_16": {
+      "omega": 8.0,
+      "scale": 4.0,
+      "reward_factor": 1.2,
+      "durations": [
+        800,
+        3600,
+        800
+      ],
+      "embedding_starts": 3
+    }
+  },
+  "screening": "First decision only: probability of feasible subsets in the lowest 10% of feasible stage-energy range.",
+  "advancement": "Top two screen candidates plus baseline; full-pipeline training only selects the winner.",
+  "selection": "Lexicographic: solved training cases, mean(feasibility - 0.25 * capped model relative gap). Missing gap=2; cap=2.",
+  "attempts": 32,
+  "bank_shots": 1000,
+  "sampler_seed_offset": 10000,
+  "scope": "Track A clustering proposals; routing algorithm and objective unchanged.",
+  "limitations": "One instance seed per split; finite cached shot banks; noiseless classical quantum simulation."
+}

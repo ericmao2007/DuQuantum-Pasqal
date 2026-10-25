@@ -13,10 +13,10 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'challenge' / 'results'
 
 
-def evaluate(instance, reference, route_costs, route_orders, method, seed, attempts, record_trace=False):
+def evaluate(instance, reference, route_costs, route_orders, method, seed, attempts, record_trace=False, sampler_options=None):
     rng = np.random.default_rng(seed)
     pair = pair_costs(instance)
-    sampler = Sampler(instance, pair, method, seed)
+    sampler = Sampler(instance, pair, method, seed, options=sampler_options)
     feasible, plans = [], []
     stage_valid = stage_total = 0
     start = time.perf_counter()
@@ -88,7 +88,7 @@ def evaluate(instance, reference, route_costs, route_orders, method, seed, attem
                embedding_error_mean=float(np.mean(errors)) if errors else None,
                embedding_error_max=max(errors) if errors else None,
                backend_calls=sampler.backend_calls, backend_shots=sampler.backend_shots,
-               sample_bank_shots=BANK_SHOTS if method != 'random' else 0,
+               sample_bank_shots=(sampler_options or {}).get('bank_shots',BANK_SHOTS) if method != 'random' else 0,
                sampling_protocol='independent trajectories resampled from finite cached conditional shot banks' if method != 'random' else 'independent fair bits; same window and rejection',
                backend='QutipBackendV2 exact state-vector' if method != 'random' else 'numpy random',
                bond_dimension='not applicable: no MPS truncation', global_detuning_only=True, noise=False,
@@ -97,17 +97,22 @@ def evaluate(instance, reference, route_costs, route_orders, method, seed, attem
                backend_and_embedding_seconds=sampler.backend_seconds,
                total_demand=sum(instance['demands']), load_ratio=sum(instance['demands'])/(k*instance['capacity']),
                largest_demand_ratio=max(instance['demands'])/instance['capacity'])
-    detail = dict(metrics=row, best_plan=best, best_cvrp_plan=best_route, attempts=plans, banks=sampler.banks)
+    detail = dict(sampler_options=dict(sampler_options or {}), metrics=row, best_plan=best, best_cvrp_plan=best_route, attempts=plans, banks=sampler.banks)
     return row, detail
 
 
 def main():
+    global OUT
     parser = argparse.ArgumentParser()
     parser.add_argument('--tiers', nargs='+', choices=list(TIERS), default=list(TIERS))
     parser.add_argument('--seeds', nargs='+', type=int, default=[11, 29])
     parser.add_argument('--attempts', type=int, default=32)
     parser.add_argument('--methods', nargs='+', choices=['fast', 'slow', 'random'], default=['fast', 'slow', 'random'])
+    parser.add_argument('--sampler-config', type=Path, help='JSON selected.json from challenge.tune')
     args = parser.parse_args()
+    sampler_options = json.loads(args.sampler_config.read_text())['sampler_options'] if args.sampler_config else None
+    if args.sampler_config:
+        OUT = ROOT / 'challenge' / 'tuned_results'
     if args.attempts < 1:
         parser.error('--attempts must be positive')
     OUT.mkdir(exist_ok=True)
@@ -125,7 +130,7 @@ def main():
             (OUT/f'{name}_reference.json').write_text(json.dumps(reference, indent=2)+'\n')
             print(f'  model={reference["model_optimum"]:.4f}, CVRP={reference["cvrp_optimum"]:.4f}', flush=True)
             for method in args.methods:
-                row, detail = evaluate(instance, reference, costs, orders, method, seed+10000, args.attempts)
+                row, detail = evaluate(instance, reference, costs, orders, method, seed+10000, args.attempts, sampler_options=sampler_options if method != 'random' else None)
                 rows.append(row)
                 (OUT/f'{name}_{method}.json').write_text(json.dumps(detail, indent=2)+'\n')
                 print(f'  {name} {method}: feasibility={row["feasibility_rate"]:.1%}, model gap={row["model_gap_percent"]}', flush=True)
@@ -133,14 +138,17 @@ def main():
                     writer = csv.DictWriter(f, fieldnames=list(rows[0]))
                     writer.writeheader()
                     writer.writerows(rows)
-    settings = dict(tiers=args.tiers, seeds=args.seeds, attempts=args.attempts, methods=args.methods,
-                    max_atoms=WINDOW, pulse_durations_ns=PULSES, energy_scale=SCALE,
-                    quantum_bank_shots=BANK_SHOTS, certificate_used_by_optimizer=False,
+    settings = dict(sampler_options=sampler_options, tiers=args.tiers, seeds=args.seeds, attempts=args.attempts, methods=args.methods,
+                    max_atoms=WINDOW, pulse_durations_ns={m:(sampler_options or {}).get('durations',PULSES[m]) for m in args.methods if m != 'random'}, energy_scale=(sampler_options or {}).get('scale', SCALE),
+                    quantum_bank_shots=(sampler_options or {}).get('bank_shots', BANK_SHOTS), certificate_used_by_optimizer=False,
                     reference_used_by_optimizer=False, dmm=False)
     (OUT/'settings.json').write_text(json.dumps(settings, indent=2)+'\n')
     print(f'Wrote {OUT / "results.csv"}', flush=True)
-    from .report import build
-    build()
+    if args.sampler_config:
+        print('Custom sampler evidence saved separately; baseline PDF template was not regenerated.')
+    else:
+        from .report import build
+        build()
 
 
 if __name__ == '__main__':

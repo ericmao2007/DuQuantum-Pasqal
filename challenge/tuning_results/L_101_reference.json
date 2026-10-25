@@ -1,0 +1,56 @@
+{
+  "model_optimum": 12.470961759730518,
+  "cvrp_optimum": 472.05539308362165,
+  "model_optimal_clusterings": 1,
+  "cvrp_optimal_clusterings": 1,
+  "model_optimal_groups": [
+    [
+      0,
+      3,
+      4,
+      7
+    ],
+    [
+      1,
+      5,
+      12,
+      14
+    ],
+    [
+      2,
+      6,
+      11
+    ],
+    [
+      8,
+      9,
+      10,
+      13
+    ]
+  ],
+  "cvrp_optimal_groups": [
+    [
+      0,
+      3,
+      4,
+      9,
+      13
+    ],
+    [
+      1,
+      5,
+      7,
+      12,
+      14
+    ],
+    [
+      2,
+      6,
+      8,
+      10,
+      11
+    ]
+  ],
+  "model_optimum_routed_cost": 540.9291649972147,
+  "status": "proven optimum: exhaustive feasible subsets, exact partition DP"
+}
