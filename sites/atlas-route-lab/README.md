@@ -18,9 +18,9 @@ The solver uses actual XYZ Euclidean distances. One `su` is one fictional space-
 ## Four clear stages
 
 1. Explore: drag to orbit, scroll to zoom, click a planet to inspect its XYZ coordinates. Measure mode selects any two planets and reports sqrt(dx^2+dy^2+dz^2).
-2. Assign ships: replay actual subset proposals and capacity checks, including rejected trajectories. Ship colors remain consistent with the chronological best assignment.
+2. Assign ships: replay actual subset proposals and capacity checks, including rejected trajectories. Ship colors and halos show membership; no route segments or invented center junctions are drawn during clustering. Ship colors remain consistent with the chronological best assignment.
 3. Find visit order: scan actual distinct valid measured tour patterns. Numbered planets and route segments update with the candidate. This is decoder scan order, not fabricated shot chronology. Optional quantum details show actual intermediate excitation probabilities.
-4. Final routes: validate and merge one quantum-routed four-planet cluster and two explicitly classical trivial clusters. The total distance and gap use the original 3D objective.
+4. Final routes: validate and merge three quantum-sampled ship tours (3, 4, and 3 planets; 6, 10, and 6 atoms). Every ship uses 2000 edge/DMM measurements; exact classical tours are evaluation references only, never route fallbacks. The total distance and gap use the original 3D objective.
 
 Main indicators have short definitions and expandable explanations: valid complete clusterings, total return-trip distance, and excess distance above the independently proven full CVRP optimum. Clustering score is explicitly dimensionless and distinct from tour distance.
 
@@ -34,3 +34,5 @@ Three.js 0.170.0 and OrbitControls are pinned and vendored locally; their licens
 - `python -m challenge.time_comparison`: regenerate its three-run timing evidence.
 
 US distances use illustrative city centers and a shared-scale equirectangular projection, not road routing. US Atlas map attribution remains in `dist/assets/MAP_LICENSE.txt`.
+
+The all-quantum-routing policy applies to this separate planetary demo. The official Track B benchmark retains its documented trivial-cluster policy. The CPU still performs geometry fitting, capacity checks, measurement decoding and selection of the shortest measured legal tour. All quantum evolution is CPU-emulated, with no QPU speedup claim. Each decoded tour is a connected degree-two cycle; visual line crossings do not create extra stops or branches.

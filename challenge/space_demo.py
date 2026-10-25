@@ -39,25 +39,22 @@ def main():
     routes=[]
     for v,group in enumerate(best['groups']):
         mask=sum(1<<i for i in group)
-        if len(group)==4:
-            bank=simulate(instance,group,'edge','dmm',23026+v,shots=2000,record_occupations=True)
-            save(OUT/f'route_{v}.json',bank)
-            if bank['best'] is None:raise RuntimeError(f'Quantum routing failed for ship {v+1}; no hidden repair')
-            incumbent=float('inf');trace=[]
-            for candidate in bank['valid_routes']:
-                improved=candidate['length']<incumbent
-                incumbent=min(incumbent,candidate['length'])
-                trace.append(dict(route=candidate['route'],length=candidate['length'],count=candidate['count'],
-                                  bits=candidate['bits'],best_so_far=incumbent,improved=improved))
-            routes.append(dict(ship=v,group=group,route=bank['best']['route'],length=bank['best']['length'],
-                               exact_length=costs[mask],exact_route=list(orders[mask]),method='Quantum edge / DMM',
-                               shots=bank['shots'],valid_shots=bank['feasible_shots'],atoms=bank['atoms'],
-                               candidates=trace,occupations=bank['occupation_trace'],coordinates_um=bank['coordinates_um'],
-                               variables=bank['variables'],embedding_error=bank['embedding_error']))
-        else:
-            routes.append(dict(ship=v,group=group,route=list(orders[mask]),length=costs[mask],exact_length=costs[mask],
-                               exact_route=list(orders[mask]),method='Classical trivial',shots=0,valid_shots=0,
-                               atoms=0,candidates=[],occupations=[]))
+        if not 2 <= len(group) <= 4:
+            raise RuntimeError('This all-quantum-routing demo requires 2–4 planets per ship; no classical fallback')
+        bank=simulate(instance,group,'edge','dmm',23026+v,shots=2000,record_occupations=True)
+        save(OUT/f'route_{v}.json',bank)
+        if bank['best'] is None:raise RuntimeError(f'Quantum routing failed for ship {v+1}; no hidden repair')
+        incumbent=float('inf');trace=[]
+        for candidate in bank['valid_routes']:
+            improved=candidate['length']<incumbent
+            incumbent=min(incumbent,candidate['length'])
+            trace.append(dict(route=candidate['route'],length=candidate['length'],count=candidate['count'],
+                              bits=candidate['bits'],best_so_far=incumbent,improved=improved))
+        routes.append(dict(ship=v,group=group,route=bank['best']['route'],length=bank['best']['length'],
+                           exact_length=costs[mask],exact_route=list(orders[mask]),method='Quantum edge / DMM',
+                           shots=bank['shots'],valid_shots=bank['feasible_shots'],atoms=bank['atoms'],
+                           candidates=trace,occupations=bank['occupation_trace'],coordinates_um=bank['coordinates_um'],
+                           variables=bank['variables'],embedding_error=bank['embedding_error']))
     # Keep ship colors consistent with the chronological best clustering decisions.
     chronological=[s['selected'] for s in best['stages'] if s['accepted']]
     used=set(i for g in chronological for i in g)
@@ -84,10 +81,13 @@ def main():
                  gap_percent=100*(total/reference['cvrp_optimum']-1),
                  protocol=dict(backend='QutipBackendV2 on CPU',clustering_attempts=64,routing_shots=2000,
                                dmm='Emulator-only routing control',noise=False,modulation=False,
+                               routing_policy='Every ship uses measured quantum edge/DMM routing; no classical tour fallback',
+                               classical_processing='Geometry fitting, capacity checks, decoding and best measured-tour selection',
                                candidate_order='Actual valid-tour patterns scanned by the decoder; not chronological hardware shots',
                                geometry='True fixed 3D Euclidean distances; the atom register stays 2D'))
     save(OUT/'dashboard.json',payload);save(WEB/'space.json',payload)
-    save(WEB/'space-evidence.json',dict(instance=instance,reference=reference,clustering=detail,routes=routes))
+    save(WEB/'space-evidence.json',dict(instance=instance,reference=reference,clustering=detail,routes=routes,
+         routing_banks=[json.loads((OUT/f'route_{r["original_register_index"]}.json').read_text()) for r in routes]))
     print('Feasible:',detail['metrics']['feasibility_rate'],'score gap:',detail['metrics']['model_gap_percent'],flush=True)
     print('Routes:',[(r['ship'],r['method'],len(r['candidates'])) for r in routes],flush=True)
     print('Total:',total,'reference:',reference['cvrp_optimum'],'gap:',payload['gap_percent'],flush=True)

@@ -1,11 +1,11 @@
 """Check that the planetary example solves the real XYZ problem it displays."""
 import json
-from itertools import permutations
+from itertools import permutations, product
 from pathlib import Path
 import unittest
 import numpy as np
 from .core import generate, validate, pair_costs, references, groups_to_assignment
-from .routing import encoding, energy, route_length
+from .routing import encoding, energy, route_length, decode
 
 ROOT=Path(__file__).resolve().parent
 
@@ -27,6 +27,19 @@ class SpaceChecks(unittest.TestCase):
         bits=[int(tuple(e) in edges) for e in spec['variables']]
         self.assertAlmostEqual(energy(bits,spec),route_length(instance,[0,1,2,3])/(100*np.sqrt(3)))
 
+    def test_three_customer_edge_encoding(self):
+        instance=generate('S',11)
+        group=[0,1,2]
+        spec=encoding(instance,group,'edge')
+        legal=0
+        for bits in product('01',repeat=6):
+            decoded=decode(bits,spec)
+            if decoded is not None:
+                legal+=1
+                self.assertEqual(set(decoded),set(group))
+                self.assertAlmostEqual(energy(bits,spec),route_length(instance,decoded)/(100*np.sqrt(2)))
+        self.assertEqual(legal,3)
+
     def test_saved_plan_traces_and_route_scan(self):
         data=json.loads((ROOT/'space_demo_results/dashboard.json').read_text())
         instance=data['instance']
@@ -34,7 +47,28 @@ class SpaceChecks(unittest.TestCase):
         validate(instance,groups_to_assignment(10,[r['route'] for r in data['routes']]))
         self.assertAlmostEqual(sum(route_length(instance,r['route']) for r in data['routes']),data['total_distance'])
         self.assertEqual(sum(a['feasible'] for a in data['clustering']['attempts']),40)
-        for row in data['routes']:
+        self.assertEqual(sorted(r['atoms'] for r in data['routes']), [6, 6, 10])
+        evidence=json.loads((ROOT.parent/'sites/atlas-route-lab/dist/data/space-evidence.json').read_text())
+        self.assertEqual(len(evidence['routing_banks']), 3)
+        for row, bank in zip(data['routes'], evidence['routing_banks']):
+            self.assertEqual(bank['group'], row['group'])
+            self.assertEqual(row['method'], 'Quantum edge / DMM')
+            self.assertEqual(row['shots'], 2000)
+            self.assertEqual(sum(bank['counts'].values()), 2000)
+            self.assertEqual(row['valid_shots'], sum(c['count'] for c in row['candidates']))
+            spec=encoding(instance,row['group'],'edge')
+            measured=[]
+            for bits, count in bank['counts'].items():
+                route=decode(bits,spec)
+                if route is not None:
+                    measured.append((route_length(instance,route),route))
+                    edges=[e for e,b in zip(spec['variables'],bits) if b=='1']
+                    self.assertEqual(len(edges),len(row['group'])+1)
+                    for vertex in range(len(row['group'])+1):
+                        self.assertEqual(sum(vertex in edge for edge in edges),2)
+            self.assertTrue(measured)
+            self.assertAlmostEqual(min(x[0] for x in measured),row['length'])
+            self.assertIn(row['route'],[route for _,route in measured])
             best=float('inf')
             for candidate in row['candidates']:
                 self.assertEqual(set(candidate['route']),set(row['group']))
